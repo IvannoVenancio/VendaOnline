@@ -1,0 +1,96 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id      Int      @id @default(autoincrement())
+  email   String   @db.Varchar(100) @unique  
+  name    String
+  tipo_usuario      
+  senha   String    @db.VarChar(100)
+  profile Profile
+
+  created_at DateTime @default(now())
+  update_at DateTime  @updadeAt
+  @@map("")
+}
+
+model Pedido{
+  id                 Int   @id @default(autoincrement())
+  data_Pedido            
+  id_usuario          Int @id @default(autoincrement())
+  status         
+  valor_total         
+
+}
+
+model Produto{
+  id_Produto          Int
+  nome_produto        String
+  descricao           
+  preco               
+  estoque             Int 
+  id_categoria        Int 
+  data_cadastro       
+  status_pagamento    
+}
+
+model item{
+
+}
+
+model item_pagamento{
+  id @id    @id @default(autoincrement())
+  id_item           Int 
+  id_pedido         Int 
+  quantidade         
+  preco_unitario     
+  subtotal          
+}
+
+model pagamento{
+  id_pagamento          
+  id_pedido             
+  valor_pago          
+  metodo_pagamento             
+  data_pagamento      
+  status_pagamento      
+
+}
+
+model endereço{
+  id_endereco 
+  id_usuario 
+  cidade
+  estado
+  pais
+  tipo_endereco 
+}
+
+model Avaliação
+
+id_avaliacao 
+id_produto 
+id_usuario 
+nota (1 a 5)
+comentario
+data_avaliacao
+
+model carrinho{
+  id_carrinho
+  id_usuario    
+  data_criacao    
+  data_atualizacao    
+  status
+}
