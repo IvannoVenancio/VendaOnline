@@ -9,13 +9,15 @@ const handlebars = require ('express-handlebars')
     app.engine('handlebars',handlebars({defaultLayout:'main'}))
     app.set('view engine', 'handlebars')
 
+    // Definir a pasta onde os templates estarão localizados (opcional, padrão é `views`)
+//app.set('views', './views');
 
 //Rota1
 
 app.get("/", function(req, res){
-    res.render("home")
-
+    res.render('home', { title: 'Bem-vindo ao nosso site!' });
 });
+
 
 
 
