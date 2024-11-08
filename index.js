@@ -1,17 +1,26 @@
 const express = require ('express');
 
+const bodyParser = require ('body-parser')
+const {engine} = require ('express-handlebars')
+
+const indexRoutes = require('./routes/index')
 const app = express();
 
-const handlebars = require ('express-handlebars')
 
 //Config
     //Template Engine
-    app.engine('handlebars',handlebars({defaultLayout:'main'}))
+    app.engine('handlebars',engine({
+    defaultLayout:'main',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault:true
+    }
+}))
     app.set('view engine', 'handlebars')
 
-    //app.engine('handlebars', exphbs());
-    //app.set('view engine', 'handlebars');
-    //app.set('views', './views');
+    app.use(bodyParser.urlencoded({ extended: true}))
+
+    app.use(indexRoutes)
 
     // Definir a pasta onde os templates estarão localizados (opcional, padrão é `views`)
 //app.set('views', './views');
