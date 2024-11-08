@@ -82,7 +82,7 @@ model ItemPagamento {
 model Pagamento {
   id             Int     @id @default(autoincrement())
   id_pedido      Int
-  valor_pago     Float
+  valor_pago     Decimal
   metodo_pagamento String // Exemplo: "cartão"...
   data_pagamento DateTime @default(now())
   status_pagamento String // Exemplo: "pago", "pendente"
@@ -96,9 +96,8 @@ model Endereco {
   id             Int     @id @default(autoincrement())
   id_usuario     Int
   cidade         String
-  estado         String
+  provincia         String
   pais           String
-  tipo_endereco  String // Exemplo: "residencial", "comercial"
 
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
