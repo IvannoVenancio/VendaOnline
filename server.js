@@ -1,9 +1,8 @@
 const express = require ('express');
-
 const bodyParser = require ('body-parser')
 const {engine} = require ('express-handlebars')
 
-const indexRoutes = require('./routes/index')
+const indexRoutes = require('./src/routes/index')
 const app = express();
 
 
@@ -22,24 +21,10 @@ const app = express();
 
     app.use(indexRoutes)
 
-    // Definir a pasta onde os templates estarão localizados (opcional, padrão é `views`)
-//app.set('views', './views');
+//app.get("/", function(req, res){
+//    res.render('home', { title: 'Bem-vindo ao nosso site!' });
+//});
 
-//Rota1
-
-app.get("/", function(req, res){
-    res.render('home', { title: 'Bem-vindo ao nosso site!' });
-});
-
-//Rota2
-app.get("/aboutus", function(req, res){
-    res.render('aboutus', { title: 'Bem-vindo a página que fala sobre nós!' });
-});
-
-//Rota para teste
-app.get('/test', (req, res) => {
-    res.render('test', { title: 'Página de Teste', message: 'O Handlebars está a funcionar!' });
-});
 
 
 
