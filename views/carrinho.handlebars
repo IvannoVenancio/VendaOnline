@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Carrinho</title>
+</head>
+<body>
+    <header>
+        <h1>Seu Carrinho</h1>
+        <a href="home.handlebars" class="home-link">Voltar para Home</a>
+    </header>
+
+    <main>
+        <div id="cart-items">
+            <div class="cart-item">
+                <span class="product-name">Produto 1</span>
+                <span class="product-price">R$ 50,00</span>
+                <span class="product-quantity">Quantidade: 1</span>
+                <span class="product-total">Total: R$ 50,00</span>
+            </div>
+            <div class="cart-item">
+                <span class="product-name">Produto 2</span>
+                <span class="product-price">R$ 30,00</span>
+                <span class="product-quantity">Quantidade: 2</span>
+                <span class="product-total">Total: R$ 60,00</span>
+            </div>
+            <div class="cart-item">
+                <span class="product-name">Produto 3</span>
+                <span class="product-price">R$ 20,00</span>
+                <span class="product-quantity">Quantidade: 1</span>
+                <span class="product-total">Total: R$ 20,00</span>
+            </div>
+        </div>
+        <div class="total">
+            <p>Total: <span id="total-price">R$ 130,00</span></p>
+        </div>
+        <button class="checkout-button">Finalizar Compra</button>
+    </main>
+</body>
+</html>

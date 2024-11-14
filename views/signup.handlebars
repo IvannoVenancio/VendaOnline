@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../views/login/signup.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="../views/login/img/undraw_sign_up_n6im.svg" alt="">
+        </div>
+        <div class="form">
+            <form action="/login" method="POST">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Login</h1>
+                    </div>
+                    <div class="signup-button">
+                        <button><a href="../views/signup.handlebars">Cadastrar-se</a></button>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" placeholder="Digite o seu Email" required>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="password">Senha</label>
+                        <input id="password" type="password" name="password" placeholder="Digite a sua Senha" required>
+                    </div>
+                </div>
+
+                <div class="continue-button">
+                    <button type="submit">Entrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
