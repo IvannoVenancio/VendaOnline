@@ -5,6 +5,390 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>EIMSTORE</title>
     <link rel="stylesheet" href="/EimStore/styles/globals.css" />
+    <style>*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'arial';
+}
+
+.header-inner-content{
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+}
+
+.navbar{
+    background: #2c2c2c;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    box-shadow: 10px 0px 10px #2c2c2c;
+    z-index: 99;
+}
+
+.navbar>div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.logo{
+    color: #0084ff;
+
+}
+
+.logo span{
+    color: #fff;
+}
+
+.nav ul{
+    display: flex;
+    list-style: none;
+    align-items: center;
+
+}
+
+.nav icon-container{
+    display: flex;
+    align-items: center;
+}
+
+.nav icon-container img{
+    width: 30px;
+    cursor: pointer;
+}
+
+.nav icon-container img:first-child{
+    margin-right: 1rem;
+}
+
+.nav ul li{
+    color: #fff;
+    margin-right: 1.5rem;
+    cursor: pointer; 
+    /*display: online; */ 
+}
+
+.nav ul li{
+    transform: translateY(-5px);
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.menu-button{
+    display: none;
+
+}
+
+.header {
+    background-image: radial-gradient(#fff, #c7c7c7);
+}
+
+.header-bottom-side{
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding: 1rem;
+    
+}
+
+.header-bottom-side-left{
+    height: 100%;
+    flex-basis: 50%;
+}
+
+.header-bottom-side-left h2{
+    font-size: 3.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.header-bottom-side-left p{
+    line-height: 1.5rem;
+    margin-bottom: 1.5rem;
+} 
+
+.header-bottom-side-left buttom{
+    background-color: #0084ff;
+    border: none;
+    cursor: pointer;
+    padding: 0.8rem 3.8rem;
+    border-radius: 9999px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 1rem;
+    transform: all 0.2s;
+
+}
+
+.header-bottom-side-right button:hover{
+background-color: #004c94;
+
+}
+
+.header-bottom-side-right{
+    flex-basis: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-bottom-side-right img{
+    width: 115%;
+}
+/* Media queries  */
+@media (max-whidth: 800px){
+    .logo{
+        font-size: 1.2rem;
+    }
+    .menu-button{
+        display: block;
+    }
+    .header-bottom-side {
+        flex-direction: column;
+        text-align: center;
+        padding-top: 4rem;
+    }
+    .nav{
+        position: absolute;
+        background: #2c2c2c;
+        width: 100%;
+        top: 46px;
+        display: none;
+        }
+
+        .show-menu nav {
+
+            display: block;
+        }
+
+    .ul{
+        flex-direction: column;
+    }
+    
+    .nav ul li{
+        text-align: center;
+        padding: 0.8rem;
+        
+    }
+}
+
+/*  Header   */
+
+/* main-content */
+main{
+    background-color: #ebebeb;
+}
+.gray-background{
+    background-color: #2c2c2c;
+}
+.page-inner-content{
+    max-width: 1280;
+    margin: 0 auto;
+}
+.cols{
+    display: grid;
+    justify-content: space-evenly;
+    padding: 4rem 1rem;
+}
+.cols-3{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+}
+.cols-3 img{
+    max-width: 100%;
+}
+
+.cols-4 img{
+    max-width: 100%;
+}
+.cols-4{
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+.cols>*{
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.cols>*:hover{
+        transform: translateY(-5px);
+}
+
+.section-title{
+    text-align: center;
+    margin-top: 4rem;
+    font-size: 1.8rem;
+}
+
+.subtitle-underline{
+    width: 100px;
+    height: 5px;
+    background: #0084ff;
+    border-radius: 9999px;
+    margin: 8px auto 0 auto; 
+}
+
+.product{
+    color: #2c2c2c;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.product-name{
+    font-weight: 600;
+    margin-top: 0.4rem;
+}
+
+.rate{
+    color: #004c94;
+    font-size: 1.3rem;
+}
+
+.product-price span{
+    font-weight: 600;
+}
+
+.exclusive-container{
+    color: #fff;
+    flex-direction: row-reverse;
+    padding: 5rem 1rem;
+}
+
+.exclusive-container img{
+    max-width: 500px;
+}
+    /* Media queries */
+
+@media (max-width:800px){
+    .section-title{
+        font-size: 1rem;
+    }
+    .cols-3{
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .cols-4{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .product-name, .product-price, .rate{
+        max-height: 1rem;
+        overflow: hidden;
+        font-size: 0.8rem;
+    }
+    .exclusive-container{
+        flex-direction: column-reverse;
+    }
+    .exclusive-container img{
+        margin-bottom: 4rem;
+    }
+}
+
+    /* Main content */
+   
+    /* Motivations */
+    
+.motivations{
+    display: flex;
+    padding: 4rem 1rem;
+    justify-content: space-evenly;
+}
+.motivation{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 30%;
+    text-align: center;
+    box-shadow: 0 0 15px #afafaf;
+    padding: 1rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.motivation:hover{
+    transform: translateY(-5px);
+}
+.motivation p{
+    margin: 5px 0;
+}
+.motivation p:first-child{
+    font-weight: bold;
+    font-size: 5rem;
+    color: #0084ff;
+    margin-top: 3rem;
+    line-height: 2rem;
+}
+.motivation p:last-child{
+    font-weight: bold;
+
+}
+    /*Media queries*/
+
+    @media (max-width:800px){
+        .motivations{
+            flex-direction: column;
+        }
+        .motivation{
+            margin-bottom: 1.2rem;
+
+        }
+    }
+
+    /* Motivations */
+
+       /* Footer */
+
+.footer-content{
+    display: flex;
+    align-items: center;
+    color: #8f8f8f;
+    padding: 4rem 1rem;
+    gap: 2rem;
+}
+
+.download-options>*{
+    margin: 1rem 0;
+}
+
+.download-options>p:first-child{
+    font-weight: bold;
+    color: #fff;
+}
+.download-options>div{
+    display: flex;
+}
+.download-options>div img{
+    width: 180px;
+}
+.logo-footer{
+    text-align: center;
+
+}
+
+.links-footer h3{
+    color: #fff;
+    margin-bottom: 0.8rem;
+}
+
+.links-footer ul{
+    list-style: none;
+}
+
+.links-footer ul li{
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+}
+
+
+       /* Footer */
+    
+
+
+
+</style>
 </head>
 <body>
     <div class="navbar show-menu">
@@ -37,8 +421,8 @@
             -->
             </nav>
             <div class="nav icon-container">
-                <img src="/images/cart.png" />
-                <img src="/images/menu.png" class="menu-button" />
+                <img src="/EimStore/images/cart.png" />
+                <img src="/EimStore//images/menu.png" class="menu-button" />
             </div>
         </div>
     </div>
@@ -54,7 +438,7 @@
                     
                 </div>
                 <div class="header-bottom-side-right"></div>
-                <img src="/images/gaming-msi-header.png" alt="">
+                <img src="/EimStore/images/gaming-msi-header.png" alt="">
             </div>
         </div>
     </header>
@@ -65,9 +449,9 @@
         <div class="gray-background">
             <div class="page-inner-content">
                 <div class="cols cols-3">
-                    <img src="/images/products/product-1.png" >
+                    <img src="/EimStore/images/products/product-1.png" >
                     
-                    <img src="/images/products/product-2.png" >
+                    <img src="/EimStore/images/products/product-2.png" >
                     
                     <img src="/images/products/product-3.png" >
                     
@@ -80,7 +464,7 @@
                 <div class="subtitle-underline"></div>
                 <div class="cols cols-4">
                     <div class="product">
-                        <img src="/images/products/product-4.png" alt="">
+                        <img src="/EimStore/images/products/product-4.png" alt="">
                         <p class="product-name">Combo Gamer Meetion</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">150,000.00 <span>Kz</span></p>
@@ -88,21 +472,21 @@
                         
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-5.png" alt="">
+                        <img src="/EimStore/images/products/product-5.png" alt="">
                         <p class="product-name">Msi GeForce Gtx 1650</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">250,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho ></button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-6.png" alt="">
+                        <img src="/EimStore/images/products/product-6.png" alt="">
                         <p class="product-name">DualSense PS5</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">50,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-7.png" alt="">
+                        <img src="/EimStore/images/products/product-7.png" alt="">
                         <p class="product-name">Cadeira Gamer Frizzi</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
                         <p class="product-price">120,000.00 <span>Kz</span></p>
@@ -116,56 +500,56 @@
                 <div class="subtitle-underline"></div>
                 <div class="cols cols-4">
                     <div class="product">
-                        <img src="/images/products/product-8.png" alt="">
+                        <img src="/EimStore/images/products/product-8.png" alt="">
                         <p class="product-name">IPhone 14 Pro Max 512GB</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">750,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-9.png" alt="">
+                        <img src="/EimStore/images/products/product-9.png" alt="">
                         <p class="product-name">Samsung Galaxy S23 Ultra 1TB</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">650,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-10.png" alt="">
+                        <img src="/EimStore/images/products/product-10.png" alt="">
                         <p class="product-name">Asus Rog Phone 3 Gamer</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">45,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-11.png" alt="">
+                        <img src="/EimStore/images/products/product-11.png" alt="">
                         <p class="product-name">Xiaomi 13 Ultra</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
                         <p class="product-price">350,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-12.png" alt="">
+                        <img src="/EimStore/images/products/product-12.png" alt="">
                         <p class="product-name">Xbox Series X </p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">150,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-13.png" alt="">
+                        <img src="/EimStore/images/products/product-13.png" alt="">
                         <p class="product-name">Racingwheel GT480 Ferrari</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
                         <p class="product-price">250,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-14.png" alt="">
+                        <img src="/EimStore/images/products/product-14.png" alt="">
                         <p class="product-name">PlayStation 5</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
                         <p class="product-price">550,000.00 <span>Kz</span></p>
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="product">
-                        <img src="/images/products/product-15.png" alt="">
+                        <img src="/EimStore/images/products/product-15.png" alt="">
                         <p class="product-name">Gaming Desktop RTX 3090Ti</p>
                         <p class="rate">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
                         <p class="product-price">120,000.00 <span>Kz</span></p>
@@ -188,7 +572,7 @@
                         <button>Adicionar ao carrinho </button>
                     </div>
                     <div class="header-bottom-side-right"></div>
-                    <img src="/images/exclusive.png" alt="">
+                    <img src="EimStore//images/exclusive.png" alt="">
                 </div>
             </div>
 
@@ -235,8 +619,8 @@
                 <p>Baixe a nossa Aplicação</p>
                 <p>Baixe a nossa Aplicação para Android e iOS</p>
                 <div>
-                    <img src="/images/app-store.png" alt="">
-                    <img src="/images/play-store.png" alt="">
+                    <img src="/EimStore/images/app-store.png" alt="">
+                    <img src="/EimStore/images/play-store.png" alt="">
                 </div>
             </div>
             <div class="logo-footer">
