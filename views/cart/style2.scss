@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header {
+background: #111;
+color: white;
+font-size: 24px;
+padding: 20px 0;
+
+display: flex;
+justify-content: center;
+}
+main{
+background: #fff;
+
+}
+main .page-title{
+font-size: 40px;
+padding: 50px 0;
+text-align: center;
+
+}
+.content{
+display: flex;
+}
+
+.content section{
+flex: 1;
+}
+
+.content aside{
+background: blue;
+min-width: 250px;
+}
+
+table{
+width: 100%;
+border-collapse: collapse;
+thead{
+    tr {
+        border-bottom: 3px #888282;
+        th {
+            text-align: left;
+            padding-bottom: 14px 0;
+            color: #ccc;
+            }
+        }
+}
+
+}
+
+ tr {
+border-bottom: 3px #888282;
+}
+th {
+text-align: left;
+padding-bottom: 14px 0;
+}
+table tbody{
+
+}
