@@ -1,0 +1,131 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @db.VarChar(100) @unique  
+  name         String
+  tipo_usuario String   // Exemplo: "admin" ou "cliente"
+  senha        String   @db.VarChar(100)
+  profile      Profile?
+
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt
+  @@map("user")
+}
+
+model Pedido {
+  id             Int      @id @default(autoincrement())
+  data_Pedido    DateTime @default(now())
+  id_usuario     Int
+  status         String   // Exemplo: "pendente", "concluído"
+  valor_total    Float
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("pedido")
+}
+
+model Produto {
+  id             Int      @id @default(autoincrement())
+  nome_produto   String
+  descricao      String?
+  preco          Float
+  estoque        Int
+  id_categoria   Int
+  data_cadastro  DateTime @default(now())
+  status_pagamento String // Exemplo: "pago", "pendente"
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("produto")
+}
+
+model Item {
+  id             Int     @id @default(autoincrement())
+  id_produto     Int
+  id_pedido      Int
+  quantidade     Int
+  preco_unitario Float
+  subtotal       Float
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("item")
+}
+
+model ItemPagamento {
+  id             Int     @id @default(autoincrement())
+  id_item        Int
+  id_pedido      Int
+  quantidade     Int
+  preco_unitario Float
+  subtotal       Float
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("item_pagamento")
+}
+
+model Pagamento {
+  id             Int     @id @default(autoincrement())
+  id_pedido      Int
+  valor_pago     Decimal
+  metodo_pagamento String // Exemplo: "cartão"...
+  data_pagamento DateTime @default(now())
+  status_pagamento String // Exemplo: "pago", "pendente"
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("pagamento")
+}
+
+model Endereco {
+  id             Int     @id @default(autoincrement())
+  id_usuario     Int
+  cidade         String
+  provincia         String
+  pais           String
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("endereco")
+}
+
+model Avaliacao {
+  id             Int     @id @default(autoincrement())
+  id_produto     Int
+  id_usuario     Int
+  nota           Int     @db.Int check: [1, 5]  // Nota entre 1 e 5
+  comentario     String?
+  data_avaliacao DateTime @default(now())
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("avaliacao")
+}
+
+model Carrinho {
+  id             Int     @id @default(autoincrement())
+  id_usuario     Int
+  data_criacao   DateTime @default(now())
+  data_atualizacao DateTime @updatedAt
+  status         String // Exemplo: "ativo", "inativo"
+
+  created_at     DateTime @default(now())
+  updated_at     DateTime @updatedAt
+  @@map("carrinho")
+}
+
