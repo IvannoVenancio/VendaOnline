@@ -6,18 +6,20 @@ exports.home = async(req, res)=>{
     }
 }
 
-
-exports.carrinho = async(req, res)=>{
+exports.cadastro = async(req, res)=>{
     try {
-        res.render('carrinho')
+        res.render('cadastro')
     } catch (error) {
         console.log(error)
     }
 }
 
-exports.signup = async(req, res)=>{
+
+
+
+exports.login = async(req, res)=>{
     try {
-        res.render('signup')
+        res.render('login')
     } catch (error) {
         console.log(error)
     }

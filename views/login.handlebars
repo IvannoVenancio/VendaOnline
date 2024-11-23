@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/login/style.css">
-    <title>Login</title>
-    <style>@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+    <link rel="stylesheet" href="../views/login/signup.css">
+    <title>Bem-Vindo de Volta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
 *{
 
@@ -38,7 +39,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1a2ec6;
+    background: #2206da;
     padding: 1rem;
 }
 
@@ -75,14 +76,14 @@ width: 28rem;
 
 .login-button button {
     border: none;
-    background-color: #0084ff;
+    background-color: #0229aa;
     padding: 0.4rem 1rem;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .login-button button:hover {
-    background-color: #0084ff;
+    background-color: #04115a;
 }
 
 .login-button button a {
@@ -133,19 +134,37 @@ width: 28rem;
     width: 25%;
     margin-top: 0rem;
     border: none;
-    background-color: #1a2ec6;
+    background-color: #0b27fb;
     padding: 0.62rem;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .continue-button button:hover {
-    background-color: #0e365c;
+    background-color: #0a1672;
+}
+
+.signup-button {
+    width: 20%;
+    margin-top: 0rem;
+    border: none;
+    background-color:white;
+
+    padding: 1.62rem;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #fb530b;
+}
+.signup-button a{
+   
+    background-color:rgb(60, 20, 237);
+    color: #fb530b;
 }
 
 .continue-button button a {
     text-decoration: none;
     font-size: 0.93rem;
+    
     font-weight: 500;
     color: #fff;
 }
@@ -181,62 +200,41 @@ width: 28rem;
 
     }
 }
-</style>
+
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="form-image">
-            <img src="/public/login/img/undraw_sign_up_n6im.svg" alt="">
+            <img src="/img/undraw_sign_up_n6im.svg" alt="">
         </div>
         <div class="form">
-            <form action="#">
+            <form action="/VendaOnline/views/cadastro.handlebars" method="POST">
                 <div class="form-header">
                     <div class="title">
-                        <h1>Cadastro</h1>
-                        <div class="login-button">
-   
-                        </div>
+                        <h1>Login</h1>
+                    </div>
+                    <div class="signup-button">
+                        <button><a href="/cadastro">Cadastrar-se</a></button>
                     </div>
                 </div>
                 <div class="input-group">
                     <div class="input-box">
-                        <label for="firstname">Primeiro Nome</label>
-                        <input id="firstname" type="text" name="firstname" placeholder="Digite o seu Primeiro Nome" required>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="lastname">Sobrenome</label>
-                        <input id="lastname" type="text" name="lastname" placeholder="Digite o seu Sobrenome" required>
-                    </div>
-
-                    <div class="input-box">
                         <label for="email">Email</label>
                         <input id="email" type="email" name="email" placeholder="Digite o seu Email" required>
-                    </div>
-
-                      <div class="input-box">
-                        <label for="number">Telefone</label>
-                        <input id="number" type="text" name="number" placeholder="Telefone">
                     </div>
 
                     <div class="input-box">
                         <label for="password">Senha</label>
                         <input id="password" type="password" name="password" placeholder="Digite a sua Senha" required>
                     </div>
-
-                    <div class="input-box">
-                        <label for="password">Confirmar a Senha</label>
-                        <input id="password" type="password" name="Confirmpassword" placeholder="Confirme a sua Senha" required>
-                    </div>
                 </div>
 
                 <div class="continue-button">
-                    <button><a href="#">Continuar</a></button>
+                    <button type="submit">Entrar</button>
                 </div>
             </form>
-        
-        <div class="content second-content"></div>
+        </div>
     </div>
 </body>
 </html>
-
