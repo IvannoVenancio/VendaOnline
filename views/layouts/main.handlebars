@@ -5,32 +5,196 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VendaOnline</title>
 </head>
+<body> <style>
+        /* Estilos para a navegação */
+        ul {
+            list-style-type: none; /* Remove os marcadores de lista */
+            padding: 0; /* Remove o padding padrão */
+            display: flex; /* Usa o Flexbox para alinhar os itens horizontalmente */
+            justify-content: space-around; /* Distribui os itens igualmente com espaçamento entre eles */
+            background-color: #333; /* Define uma cor de fundo escura para a barra de navegação */
+        }
+
+        li {
+            margin-right: 20px; /* Dá espaçamento entre os itens da lista */
+        }
+
+        a button {
+            background-color: #f0f0f0; /* Cor de fundo do botão */
+            border: none; /* Remove a borda padrão do botão */
+            padding: 10px 20px; /* Define o espaçamento interno do botão */
+            border-radius: 5px; /* Adiciona bordas arredondadas ao botão */
+            font-size: 16px; /* Define o tamanho da fonte */
+            cursor: pointer; /* Muda o cursor para uma mãozinha ao passar por cima */
+            text-decoration: none; /* Remove o sublinhado do link */
+            color:#333 ; /* Herda a cor do texto do botão inherit*/
+        }
+
+        a button:hover {
+            background-color: #ddd; /* Muda a cor de fundo quando o botão é hover (passado o mouse) */
+        }
+
+        /* Estilos para a barra de pesquisa */
+        .search-container {
+            display: flex; /* Usa Flexbox para alinhar o campo de pesquisa e o botão lado a lado */
+            justify-content: center; /* Alinha os itens no centro */
+            margin-top: 20px; /* Dá um espaço acima da barra de pesquisa */
+        }
+
+        .search-container input {
+            padding: 10px; /* Define o espaçamento interno do campo de pesquisa */
+            font-size: 16px; /* Tamanho da fonte dentro do campo de pesquisa */
+            border: 2px solid #ccc; /* Adiciona uma borda cinza ao campo de pesquisa */
+            border-radius: 5px 0 0 5px; /* Arredonda apenas o lado esquerdo do campo de pesquisa */
+            width: 300px; /* Define a largura do campo de pesquisa */
+        }
+
+        .search-container button {
+            padding: 10px; /* Define o espaçamento interno do botão de pesquisa */
+            background-color: #f0f0f0; /* Cor de fundo do botão */
+            border: 2px solid #ccc; /* Borda do botão de pesquisa */
+            border-radius: 0 5px 5px 0; /* Arredonda apenas o lado direito do botão */
+            cursor: pointer; /* Muda o cursor para uma mãozinha ao passar por cima */
+        }
+
+        .search-container button:hover {
+            background-color: #ddd; /* Muda a cor de fundo quando o botão de pesquisa é hover */
+        }
+
+        /* Estilos para o ícone de lupa */
+        .search-container button i {
+            font-size: 20px; /* Tamanho do ícone */
+
+        }
+
+         
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 120px; /* Dá espaço para a barra de navegação e a barra de pesquisa fixas */
+        }
+
+        /* Barra de navegação fixa no topo */
+        nav {
+            position: fixed; /* Fixa a barra de navegação no topo */
+            top: 0; /* Alinha no topo da página */
+            left: 0; /* Alinha à esquerda da página */
+            width: 100%; /* Faz a barra de navegação ocupar toda a largura da página */
+            background-color: #333; /* Cor de fundo escura para a navegação */
+            color: white; /* Cor do texto */
+            padding: 15px; /* Espaçamento interno da barra */
+            text-align: center; /* Alinha o conteúdo centralizado */
+            z-index: 1000; /* Garante que a barra de navegação fique acima de outros conteúdos */
+        }
+
+        nav a {
+            color: white; /* Cor do texto do link */
+            padding: 10px 20px; /* Espaçamento ao redor do link */
+            text-decoration: none; /* Remove o sublinhado do link */
+        }
+
+        nav a:hover {
+            background-color: #555; /* Altera a cor de fundo quando o link é hover */
+        }
+
+        /* Barra de pesquisa fixa logo abaixo da navegação */
+        .search-container {
+            position: fixed; /* Fixa a barra de pesquisa no topo */
+            top: 60px; /* Coloca a barra de pesquisa logo abaixo da barra de navegação */
+            left: 0; /* Alinha à esquerda */
+            width: 100%; /* Faz a barra de pesquisa ocupar toda a largura da página */
+            background-color: #fff; /* Cor de fundo branca */
+            padding: 10px 20px; /* Espaçamento interno */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil para destacar a barra */
+            z-index: 999; /* Garante que a barra de pesquisa fique abaixo da navegação */
+        }
+
+        .search-container input {
+            padding: 10px; /* Espaçamento interno do campo de pesquisa */
+            font-size: 16px; /* Tamanho da fonte */
+            border: 2px solid #ccc; /* Borda do campo de pesquisa */
+            border-radius: 5px 0 0 5px; /* Arredonda apenas o lado esquerdo */
+            width: 300px; /* Largura do campo de pesquisa */
+        }
+
+        .search-container button {
+            padding: 10px; /* Espaçamento interno do botão */
+            background-color: #f0f0f0; /* Cor de fundo do botão */
+            border: 2px solid #ccc; /* Borda do botão */
+            border-radius: 0 5px 5px 0; /* Arredonda apenas o lado direito do botão */
+            cursor: pointer; /* Muda o cursor para uma mãozinha ao passar por cima */
+        }
+
+        .search-container button:hover {
+            background-color: #ddd; /* Muda a cor de fundo quando o botão de pesquisa é hover */
+        }
+
+        /* Layout principal */
+        main {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        /* Seções */
+        section {
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
 <body>
-     <nav>
-               <ul> <title></title>
-                <style>
-                    ul{
-                        list-style-type: none;
-                        padding: 0;
-                    }
-                    li{
-                        display: online;
-                        margin-right: 20px;
-                        background-color: #f0f0f0;
-                        padding: 10px;
-                        border-radius: 5px;
-                    }
-                </style>
-                
-                
-                <ul>
-                    <li>HOME</li>
-                    <li>PRODUTOS</li>
-                    <li>SOBRE</li>
-                    <li>CONTACTOS</li>
-                    <li>CONTA</li>
-                </ul> 
-            
+
+    <!-- Barra de navegação -->
+    <nav>
+        <ul>
+            <li><a href="/"><button>HOME</button></a></li>
+            <li><a href="/"><button>PRODUTOS</button></a></li>
+            <li><a href="#sobre"><button>SOBRE</button></a></li>
+            <li><a href="#contactos"><button>CONTACTOS</button></a></li>
+            <li><a href="/login"><button>CONTA</button></a></li>
+        </ul>
+    </nav>
+
+    <!-- Barra de pesquisa -->
+    <div class="search-container">
+        <input type="text" placeholder="Pesquisar...">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </div>
+
+    <!-- Seções de exemplo para navegação -->
+   <!-- <section id="home">
+        <h2>Seção HOME</h2>
+        <p>Bem-vindo à seção de Home!</p>
+    </section>
+
+    <section id="produtos">
+        <h2>Seção PRODUTOS</h2>
+        <p>Aqui você encontra todos os nossos produtos.</p>
+    </section>
+
+    <section id="sobre">
+        <h2>Seção SOBRE</h2>
+        <p>Saiba mais sobre nossa empresa e missão.</p>
+    </section>
+
+    <section id="contactos">
+        <h2>Seção CONTACTOS</h2>
+        <p>Entre em contato conosco através do formulário.</p>
+    </section>
+
+    <section id="conta">
+        <h2>Seção CONTA</h2>
+        <p>Gerencie suas configurações e informações de conta.</p>
+    </section> -->
+
+    <!-- Adicionando o link para o Font Awesome para o ícone de lupa -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+
     {{{body}}}
     
 </body>

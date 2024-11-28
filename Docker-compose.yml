@@ -1,15 +1,29 @@
-version: '3.7'
+#version: '3.7'
 
 services:
  app:
     build:
       context: ./
       dockerfile: Dockerfile
-    container_name: VendaOnline
+    container_name: VendaOnline-app
+    env_file:
+      - /.env
     ports:
       - 8081:8081
     volumes:
       - ./:/home/app/
+    networks:
+      - app-network
+
+ mysqldb:
+    image: mysql:8.0.21
+    container_name: VendaOnline-bd
+    env_file:
+      - ./.env
+    ports:
+      - 3306:3306
+    volumes:
+     - ./:/home/app/
     networks:
       - app-network
 

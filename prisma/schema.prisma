@@ -19,7 +19,7 @@ model User {
   name         String
   tipo_usuario String   // Exemplo: "admin" ou "cliente"
   senha        String   @db.VarChar(100)
-  profile      Profile?
+
 
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt
@@ -108,7 +108,7 @@ model Avaliacao {
   id             Int     @id @default(autoincrement())
   id_produto     Int
   id_usuario     Int
-  nota           Int     @db.Int check: [1, 5]  // Nota entre 1 e 5
+  nota           Int     @db.Int 
   comentario     String?
   data_avaliacao DateTime @default(now())
 
