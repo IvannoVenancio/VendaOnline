@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
-            *{
+          /*  *{
                 margin: 0;
                 padding: 0;
             }
@@ -189,4 +189,228 @@
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 1px ;
-         }
+         }*/
+
+
+
+
+
+
+
+         /* Reset de margin e padding */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Estilo do header */
+header {
+    background-color: #2c2c2c;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* Título da página */
+.page-title {
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem 0;
+    color: #333;
+}
+
+/* Layout principal */
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+}
+
+section {
+    flex-basis: 70%;
+}
+
+aside {
+    flex-basis: 28%;
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+}
+
+.product .info .name {
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.product .info .category {
+    color: #777;
+}
+
+.qty {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Estilo dos botões de aumentar e diminuir */
+.qty button {
+    background-color: #0084ff; /* Cor de fundo azul */
+    color: white; /* Cor do texto */
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0; /* Remove a margem */
+}
+
+.qty button:hover {
+    background-color: #0056b3; /* Cor ao passar o mouse */
+}
+
+/* Estilo do número (quantidade) entre os botões */
+.qty span {
+    background-color: #0084ff; /* Cor de fundo azul */
+    color: white; /* Cor do número */
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin: 0 0.5rem; /* Reduz a margem entre o número e os botões */
+}
+.remove {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.remove:hover {
+    background-color: #cc0000;
+}
+
+/* Estilo do resumo da compra */
+.box {
+    background-color: #f8f8f8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(255, 253, 253, 0.984);
+}
+
+.box header {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.box .info {
+    margin: 1rem 0;
+}
+
+.box .info div {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+footer {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+footer span {
+    color: #0084ff;
+}
+
+/* Botões de finalizar compra e cupom 
+button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}*/
+
+/* Estilo dos botões no resumo da compra */
+/* Estilo geral para os botões no resumo da compra */
+.resumo-button {
+    background: linear-gradient(135deg, #007bff, #0056b3); /* Gradiente suave */
+    color: white; /* Cor do texto */
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px; /* Bordas arredondadas */
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: all 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+    display: inline-block; /* Para os botões se ajustarem ao conteúdo */
+}
+
+/* Efeito de hover nos botões */
+.resumo-button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f); /* Gradiente alterado no hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Aumenta a sombra no hover */
+    transform: translateY(-3px); /* Leve elevação ao passar o mouse */
+}
+
+/* Efeito de focus nos botões (quando clicados) */
+.resumo-button:focus {
+    outline: none; /* Remove a borda de foco padrão */
+    border: 2px solid #fff; /* Borda branca quando o botão está em foco */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.6); /* Sombra azul clara */
+}
+
+/* Efeito de desabilitar os botões (quando não clicáveis) */
+.resumo-button:disabled {
+    background: #b0c4de; /* Cor de fundo cinza claro */
+    color: #8a9ba8; /* Cor do texto */
+    cursor: not-allowed;
+    box-shadow: none; /* Remove a sombra */
+}
+
+/* Estilo do footer */
+footer {
+    /*background-color: #333;*/
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 1rem;
+}
+
+footer span {
+    color: #0084ff;
+}
+

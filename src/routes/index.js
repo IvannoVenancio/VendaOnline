@@ -13,11 +13,14 @@ indexRoutes.get('/', UserController.home)
 
 indexRoutes.get('/carrinho', CarrinhoController.carrinho)
 
-indexRoutes.get('/cadastro', UserController.cadastro)
+indexRoutes.post('/cadastro', UserController.cadastro)
+
 
 indexRoutes.get('/login', UserController.login)
 
 indexRoutes.get('/welcome', HomeController.welcome)
+
+   
 
 module.exports = indexRoutes;
 

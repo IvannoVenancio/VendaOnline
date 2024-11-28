@@ -19,7 +19,7 @@
                             <th>Produto</th>
                             <th>Preço</th>
                             <th>Quantidade</th>
-                            <thTotal></th>
+                            <th>Total</th>
                             <th>-</th>
                         </tr>
                     </thead>
@@ -36,9 +36,10 @@
                         <td>120000kzs</td>
                         <td>
                             <div class="qty">
-                                <button>-<i class="bx bx-minus"></i></button>
-                                <span>2</span>
-                                <button>+<i class="bx bx-plus"></i></button>
+                             <button class="decrease">-</button>
+                            <span class="quantity">1</span>
+                             <button class="increase">+</button>
+                            </div>
                             </div>
                         </td>
                         <td>240000kzs</td>
@@ -49,21 +50,23 @@
                 </table>
             </section>
             <aside>
-                <div class="box">
+               <div class="box">
                     <header>Resumo da Compra</header>
                     <div class="info">
-                        <div><span>Sub-Total</span><span>120000kzs</span></div>
-                         <div><span>Frete</span><span>Gratuito</span></div>
-                          <div><button>Adicionar cupom de Desconto</button></div>
-                    </div>
-                    <footer>
-                        <span>Total</span>
-                        <span>240000kzs</span>
-                    </footer>
-                </div>
-                <button>Finalizar Compra</button>
+                   <div><span>Sub-Total</span><span>120000kzs</span></div>
+                   <div><span>Frete</span><span>Gratuito</span></div>
+                      <div><button class="resumo-button">Adicionar cupom de Desconto</button></div>
+                     </div>
+        <footer>
+        <span>Total</span>
+        <span>240000kzs</span>
+    </footer>
+</div>
+<button class="resumo-button">Finalizar Compra</button>
+
             </aside>
         </div>
     </main>
+    <script src="/js/carrinho.js"></script>
 </body>
 </html>
