@@ -116,7 +116,20 @@ body{
     background-color: #0056b3; /* Cor mais escura no hover */
   }
 
+  .product .add-to-cart {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Espaçamento interno */
+    cursor: pointer; /* Muda o cursor para "pointer" */
+    transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+}
 
+.product .add-to-cart:hover {
+    background-color: #0056b3; /* Cor mais escura no hover */
+}
+/*terminaaa*/
 .menu-button{
     display: none;
 
@@ -275,6 +288,8 @@ main{
     display: flex;
     flex-direction: column;
 }
+
+/*terminaaa*/
 .product-name{
     font-weight: 600;
     margin-top: 0.4rem;
