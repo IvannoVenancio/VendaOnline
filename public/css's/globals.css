@@ -16,7 +16,7 @@ body{
 
 .navbar{
     background: #2c2c2c;
-    padding: 1rem;
+    padding: 2.5rem;
     position: sticky;
     top: 0;
     box-shadow: 10px 0px 10px #2c2c2c;
@@ -31,6 +31,11 @@ body{
 }
 
 .logo{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
     color: #0084ff;
 
 }
@@ -60,18 +65,57 @@ body{
     margin-right: 1rem;
 }
 
+/*
 .nav ul li{
-    color: #fff;
+   color: #fff;
     margin-right: 1.5rem;
     cursor: pointer; 
-    /*display: online; */ 
-}
+    display: online; *
 
+}*/
+
+
+ 
 .nav ul li{
     transform: translateY(-5px);
     transition: all 0.3s;
     font-weight: bold;
+
+    
+  
+    border-radius: 5px;
+    cursor: pointer;
 }
+
+/* Estilo da div "atalhos" */
+.atalhos {
+    position: absolute; /* Posicionamento absoluto */
+    top: 10px; /* Distância do topo */
+    right: 10px; /* Distância do lado direito */
+    display: flex; /* Alinha os elementos horizontalmente */
+    gap: 10px; /* Espaçamento entre os botões */
+    background-color: rgba(0, 123, 255, 0.1); /* Fundo com leve transparência */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  /* Estilo dos botões dentro da div "atalhos" */
+  .atalhos button {
+    background-color: #007bff; /* Cor de fundo do botão */
+    color: white; /* Cor do texto */
+    border: none; /* Remove borda */
+    border-radius: 5px; /* Bordas arredondadas */
+    padding: 10px 15px; /* Espaçamento interno */
+    cursor: pointer; /* Muda o cursor para "pointer" */
+    transition: background-color 0.3s ease; /* Transição suave ao passar o mouse */
+  }
+  
+  /* Efeito hover nos botões */
+  .atalhos button:hover {
+    background-color: #0056b3; /* Cor mais escura no hover */
+  }
+
 
 .menu-button{
     display: none;
@@ -156,11 +200,11 @@ background-color: #004c94;
 
         .show-menu nav {
 
-            display: block;
+            display: flex;
         }
 
     .ul{
-        flex-direction: column;
+        flex-direction:column;
     }
     
     .nav ul li{
