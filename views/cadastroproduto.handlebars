@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css's/cadastroproduto.css">
+    <title>Cadastro de Produtos</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-image">
+            <img src="/img/undraw_sign_up_n6im.svg" alt="">
+        </div>
+        <div class="form">
+            <form action="/create_Product" method="POST">
+                <div class="form-header">
+                    <div class="title">
+                        <h1>Cadastro de Produtos</h1>
+                        <div class="login-button">
+   
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div class="input-box">
+                       <label for="nome_produto">Nome do Produto</label>
+                        <input type="text" name="nome_produto" id="nome_produto" placeholder="Nome do Produto" required><br>
+                    </div>
+
+                    <div class="input-box">
+                        <label for="descricao">Descrição</label>
+                        <input type="text" name="descricao" id="descricao" placeholder="Preço" required><br>
+                    </div>
+
+
+                      <div class="input-box">
+                        <label for="preco">Preço</label>
+                        <input type="text" name="preco" id="preco" placeholder="Preço" required><br>
+                    </div>
+
+                     <div class="input-box">
+                        <label for="quantidade">Quantidade</label>
+                        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade" required><br></div>
+
+                     <label for="id_categoria">Categoria</label>
+                    <input type="text" name="categoria" id="categoria" placeholder="Categoria">
+                    
+
+                <div class="continue-button">
+                   <input type="submit" value="Cadastrar">
+                </div>
+
+            </div>
+
+            </form>
+        
+        <div class="content second-content"></div>
+    </div>
+    
+        <table>
+    <tr>
+        <td>#</td>
+        <td>Nome</td>
+    </tr>
+   {{#each produto}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{nome_produto}}</td>
+                <td>{{descricao}}</td>
+                <td>{{preco}}</td>
+                <td>{{quantidade}}</td>
+                <td>{{categoria}}</td>
+            </tr>
+            {{/each}}
+</table>
+    
+</body>
+</html>

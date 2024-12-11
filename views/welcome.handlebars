@@ -7,6 +7,31 @@
     
 </head>
 <body>
-    <h1>{{message}}Seja Bem-Vindo a nossa páginas de Venda Online EIMSTORE</h1>
-</body>
+    <h1>Seja Bem-Vindo a nossa páginas de Venda Online EIMSTORE</h1>
+
+<table>
+        <tr>
+        <td>#</td>
+        <td/td>
+        <td>Nome</td>
+        <td>Tipo_Usuario</td>
+        <td>senha</td>
+    </tr>
+    
+    {{#each users}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{email}}</td>
+         <td>{{name}}</td>
+          <td>{{tipo_usuario}}</td>
+           <td>{{senha}}</td>
+    </tr>
+    {{/each}}
+    
+    </table>
+
+
+     </body>
 </html>
+
+

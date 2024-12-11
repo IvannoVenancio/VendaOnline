@@ -31,10 +31,10 @@ CREATE TABLE `produto` (
     `nome_produto` VARCHAR(191) NOT NULL,
     `descricao` VARCHAR(191) NULL,
     `preco` DOUBLE NOT NULL,
-    `estoque` INTEGER NOT NULL,
+    `quantidade` INTEGER NOT NULL,
     `id_categoria` INTEGER NOT NULL,
     `data_cadastro` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `status_pagamento` VARCHAR(191) NOT NULL,
+
     `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at` DATETIME(3) NOT NULL,
 
