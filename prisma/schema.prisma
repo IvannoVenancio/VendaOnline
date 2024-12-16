@@ -11,26 +11,49 @@ model User {
   id           Int      @id @default(autoincrement())
   email        String   @unique @db.VarChar(100)
   name         String
-  tipo_usuario Int
+  tipo_usuario String   // Tipo de relacionamento por string
   senha        String   @db.VarChar(100)
-  TipoUsuario TipoUsuario @relation("user_tipo_usuario", fields: [tipo_usuario], references: [id])
+  TipoUsuario  TipoUsuario @relation("user_tipo_usuario", fields: [tipo_usuario], references: [type]) // Relacionamento via 'type'
   created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt
+  updated_at   DateTime @updatedAt @default(now())
 
   @@map("user")
 }
 
 model TipoUsuario {
-  id Int @id @default(autoincrement())
-  type String @db.VarChar(30)
+  id         Int      @id @default(autoincrement()) // Chave primária como inteiro
+  type       String   @db.VarChar(30) @unique              // 'type' para a relação
   created_at DateTime @default(now()) @db.Timestamp(6)
-  update_at DateTime @updatedAt
-  User  User[] @relation("user_tipo_usuario")
+  updated_at DateTime @updatedAt @default(now())
+  User       User[]   @relation("user_tipo_usuario") // Relacionamento com base no 'type'
 
   @@map("tipo_usuario")
 
 }
+model TipoCategoria {
+  id             Int       @id @default(autoincrement()) // Chave primária com auto incremento
+  tipo_categoria String    @db.VarChar(30) @unique // Nome da categoria (ex: "Eletrônicos")
+  created_at     DateTime  @default(now()) @db.Timestamp(6) // Data de criação
+  updated_at     DateTime  @updatedAt @default(now())// Data de atualização automática
+  produtos       Produto[] @relation("Produtos_TipoCategoria") // Relacionamento com Produto, sem fields e references
 
+  @@map("tipo_categoria") // Nome da tabela no banco de dados
+}
+
+model Produto {
+  id               Int           @id @default(autoincrement()) // Chave primária com auto incremento
+  nome_produto     String        @db.VarChar(100) // Nome do produto
+  descricao        String?       // Descrição do produto (opcional)
+  preco            Float         // Preço do produto
+  quantidade       Int           // Quantidade disponível
+  tipoCategoriaId  Int           // Referência ao ID de tipoCategoria (chave estrangeira)
+  tipo_categoria   TipoCategoria @relation("Produtos_TipoCategoria", fields: [tipoCategoriaId], references: [id]) // Relacionamento com TipoCategoria
+  data_cadastro    DateTime      @default(now()) // Data de cadastro do produto
+  created_at       DateTime      @default(now()) // Data de criação
+  updated_at       DateTime      @updatedAt // Data de atualização automática
+
+  @@map("produto") // Nome da tabela no banco de dados
+}
 model Pedido {
   id          Int      @id @default(autoincrement())
   data_Pedido DateTime @default(now())
@@ -43,20 +66,7 @@ model Pedido {
   @@map("pedido")
 }
 
-model Produto {
-  id               Int      @id @default(autoincrement())
-  nome_produto     String
-  descricao        String?
-  preco            Float
-  quantidade          Int
-  categoria         String
-  data_cadastro    DateTime @default(now())
-  
-  created_at       DateTime @default(now())
-  updated_at       DateTime @updatedAt
 
-  @@map("produto")
-}
 
 model Item {
   id             Int      @id @default(autoincrement())

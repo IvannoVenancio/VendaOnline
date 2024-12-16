@@ -1,4 +1,5 @@
-const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct } = require("../services/Produto")
+const { findAllCategoryTypes } = require("../services/Categoria")
+const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct, getProductsByCategory, getProdByCategory } = require("../services/Produto")
 
 exports.cadastroproduto = async(req, res)=>{
     try {
@@ -35,7 +36,8 @@ const { createUser, findAllUsers,getUserById, deleteUser } = require("../service
 exports.view = async(req, res) =>{
     try {
         const produto = await getAllProducts()
-        res.render('cadastroproduto', {produto})        
+        const tipoCategoria = await findAllCategoryTypes()
+        res.render('cadastroproduto', {produto, tipoCategoria})        
     } catch (error) {
         console.log("error:::", error)
     }
@@ -50,15 +52,42 @@ exports.create = async(req, res) =>{
         console.log("error:::", error)
     }
 }
+exports.prodByCategoria = async(req, res) =>{
+    try {
+        const idCategoria = Number(req.params.id_categoria)
+        console.log("idCategoria>>>", idCategoria)
+        const produtos = await getProductByIdCategoria(idCategoria)
+        console.log("produtos>>>>", produtos)
+        res.render('prodByCategoria', {layout:'main2', produtos})
+        
+    } catch (error) {
+        console.log("error:::", error)
+    }
+}
+
+exports.getProdByCategory = async(req, res) =>{
+    try {
+        const idCategoria = Number(req.params.id_categoria)
+        const produtos = await getProductsByCategory(idCategoria)
+       
+        res.render('categoria', {layout:'main', produtos})
+        
+    } catch (error) {
+        console.log("error:::", error)
+    }
+}
+
+
+
 
 
 //const { createProduct, getAllProducts} = require("../services/Produto")
 
 
 
-exports.telefone = async(req, res)=>{
+exports.telephone = async(req, res)=>{
     try {
-        res.render('telefone', {layout:''})
+        res.render('telephone', {layout:''})
     } catch (error) {
         console.log(error)
     }

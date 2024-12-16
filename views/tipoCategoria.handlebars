@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro dos usuarios
-    </title>
+    <title>Cadastro das categorias</title>
 </head>
 <body>
     
-<form action="/tipo_usuario" method="post">
-<label for="tipo_usuario">Tipo de Usuario</label>
-    <input type="text" name="type" placeholder="Tipo de Usuario" ><br>
+<form action="/tipo_categoria" method="post">
+<label for="tipo_categoria">Tipo de Categoria</label>
+    <input type="text" name="tipo_categoria" placeholder="Tipo de Categoria" ><br>
     
     <input type="submit" value="Cadastrar">
 </form>
@@ -18,12 +17,13 @@
 <table>
     <tr>
         <td>#</td>
-        <td>Tipo Usuario</td>
+        <td>Categoria</td>
     </tr>
-    {{#each tipo_usuario}}
+    {{#each tipoCategoria}}
     <tr>
         <td>{{id}}</td>
-        <td>{{type}}</td>
+        <td>{{tipo_categoria}}</td>
+
     </tr>
     {{/each}}
 </table>

@@ -9,7 +9,7 @@ exports.home = async(req, res)=>{
 
 exports.cadastro = async(req, res)=>{
     try {
-        res.render('cadastro', {layout:'cadastrologin'})
+        res.render('cadastro')
     } catch (error) {
         console.log(error)
     }
@@ -21,7 +21,7 @@ const { createUser, findAllUsers,getUserById, deleteUser } = require("../service
 exports.view = async(req, res) =>{
     try {
         
-        res.render('cadastro')     
+        res.render('cadastro', {layout:'cadastroLogin'})     
     } catch (error) {
         console.log("error:::", error)
     }
@@ -48,3 +48,11 @@ exports.login = async(req, res)=>{
     }
 }
 
+
+exports.perfil = async(req, res)=>{
+    try {
+        res.render('perfil', {users})
+    } catch (error) {
+        console.log(error)
+    }
+}

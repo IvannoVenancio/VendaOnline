@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="/css's/perfil.css">
+</head>
+<body>
+  <div class="profile-container">
+    <h1>Bem-vindo, {{user.name}}</h1>
+    <img src="{{user.profilePic}}" alt="Imagem de Perfil" class="profile-pic" />
+
+    <form action="/perfil/{{user.id}}/upload" method="get" enctype="multipart/form-data">
+      <input type="file" name="profilePic" accept="image/*" />
+      <button type="submit">Atualizar Imagem</button>
+    </form>
+
+    <h2>Resumo das Compras</h2>
+    <ul>
+      <li>Pendentes: {{purchasesSummary.pending}}</li>
+      <li>Canceladas: {{purchasesSummary.cancelled}}</li>
+      <li>Concluídas: {{purchasesSummary.completed}}</li>
+    </ul>
+  </div>
+</body>
+</html>

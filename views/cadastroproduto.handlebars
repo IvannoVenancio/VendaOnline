@@ -1,78 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css's/cadastroproduto.css">
     <title>Cadastro de Produtos</title>
+    <link rel="stylesheet" href="/css's/stilesCadastroprod.css">
 </head>
 <body>
+    
+    
+    <div class="navbar show-menu"> 
+        <div class="header-inner-content "> 
+            <h1 class="logo">EIM<span>STORE</span></h1> 
+            
+          <!-- <div class="atalhos"><a href="/login"><button>LOGIN</button></a> 
+             <a href="/carrinho"><button>CARRINHO</button></a></div> 
+              -->
+            <div class="nav icon-container"> 
+              
+                <!-- <img src="/images/menu.png" class="menu-button" />  -->
+            </div> 
+        </div> 
+    </div>
+
     <div class="container">
-        <div class="form-image">
-            <img src="/img/undraw_sign_up_n6im.svg" alt="">
-        </div>
-        <div class="form">
-            <form action="/create_Product" method="POST">
-                <div class="form-header">
-                    <div class="title">
-                        <h1>Cadastro de Produtos</h1>
-                        <div class="login-button">
-   
-                        </div>
-                    </div>
-                </div>
-                <div class="input-group">
-                    <div class="input-box">
-                       <label for="nome_produto">Nome do Produto</label>
-                        <input type="text" name="nome_produto" id="nome_produto" placeholder="Nome do Produto" required><br>
-                    </div>
-
-                    <div class="input-box">
-                        <label for="descricao">Descrição</label>
-                        <input type="text" name="descricao" id="descricao" placeholder="Preço" required><br>
-                    </div>
-
-
-                      <div class="input-box">
-                        <label for="preco">Preço</label>
-                        <input type="text" name="preco" id="preco" placeholder="Preço" required><br>
-                    </div>
-
-                     <div class="input-box">
-                        <label for="quantidade">Quantidade</label>
-                        <input type="number" name="quantidade" id="quantidade" placeholder="Quantidade" required><br></div>
-
-                     <label for="id_categoria">Categoria</label>
-                    <input type="text" name="categoria" id="categoria" placeholder="Categoria">
-                    
-
-                <div class="continue-button">
-                   <input type="submit" value="Cadastrar">
-                </div>
-
+        <h1>Cadastro de Produtos</h1>
+        <form action="/create_Product" method="post">
+            <div class="form-group">
+                <label for="productName">Nome do Produto:</label>
+                <input type="text" id="productName" name="nome_produto" required>
             </div>
 
-            </form>
-        
-        <div class="content second-content"></div>
-    </div>
-    
-        <table>
-    <tr>
-        <td>#</td>
-        <td>Nome</td>
-    </tr>
-   {{#each produto}}
-            <tr>
-                <td>{{id}}</td>
-                <td>{{nome_produto}}</td>
-                <td>{{descricao}}</td>
-                <td>{{preco}}</td>
-                <td>{{quantidade}}</td>
-                <td>{{categoria}}</td>
-            </tr>
-            {{/each}}
-</table>
-    
+            <div class="form-group">
+                <label for="productDescription">Descrição do Produto:</label>
+                <textarea id="productDescription" name="descricao" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="productPrice">Preço do Produto:</label>
+                <input type="text" id="productPrice" name="preco" required>
+            </div>
+
+            <div class="form-group">
+                <label for="productQuantity">Quantidade do Produto:</label>
+                <input type="number" id="productQuantity" name="quantidade" required>
+            </div>
+
+             {{!-- <div class="form-group">
+                <label for="registrationDate">Data de Cadastro do Produto:</label>
+                <input type="date" id="registrationDate" name="registrationDate" required>
+            </div>  --}}
+
+            <div class="form-group">
+                <label>Categorias:</label><br>
+                {{#each tipoCategoria}}          
+                <input type="radio" id="" value="{{id}}" name="tipoCategoriaId" >
+                <label for="mobile">{{tipo_categoria}}</label><br>
+                {{/each}}
+
+                <!--<input type="checkbox" tipo_categoria="Computador" name="tipo_categoria" >
+                <label for="computer">Computador</label><br>
+                <input type="checkbox" tipo_categoria="Jogos" name="tipo_categoria" >
+                <label for="games">Jogos</label><br>-->
+            </div> 
+
+             {{!-- <label for="tipo_categoria">Categoria:</label>
+    <select id="tipo_categoria" name="tipoCategoriaId" required>
+        <!-- Renderize as opções dinamicamente -->
+        {{#each tipoCategoria}}
+        <option value="{{id}}">{{tipo_categoria}}</option>
+        {{/each}}
+    </select> --}}
+
+            <button type="submit">Cadastrar</button>
+        </form>
+    </div> 
 </body>
 </html>
