@@ -37,6 +37,8 @@ indexRoutes.get('/produtos',ProdutoController.produtos)
 indexRoutes.get('/produtos_categoria/:id_categoria',ProdutoController.prodByCategoria)
 
 indexRoutes.get('/produtosCategoria/:id_categoria',ProdutoController.getProdByCategory)
+indexRoutes.get('/detalhes_produto/:detalhes',ProdutoController.VerDetalhes)
+
 
 
 indexRoutes.get('/tipoUsuario', TipoUsuarioController.view)

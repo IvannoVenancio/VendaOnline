@@ -72,6 +72,12 @@ const getProdByCategory = async(tipoCategoriaId) =>{
 }
 
 
+const VerDetalhes = async(Detalhes) =>{
+    const result = await Detalhes.findFirst({where:{Detalhes: Detalhes}})    
+    return result
+  }
 
 
-module.exports = { createProduct, getAllProducts, getProductByIdCategoria, getProdByCategory, getProductsByIdCategoria }
+
+
+module.exports = { createProduct, getAllProducts, getProductByIdCategoria, getProdByCategory, getProductsByIdCategoria, VerDetalhes }

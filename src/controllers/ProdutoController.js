@@ -1,5 +1,5 @@
 const { findAllCategoryTypes } = require("../services/Categoria")
-const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct, getProdByCategory, getProductsByIdCategoria } = require("../services/Produto")
+const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct, getProdByCategory, getProductsByIdCategoria, VerDetalhes } = require("../services/Produto")
 
 exports.cadastroproduto = async(req, res)=>{
     try {
@@ -72,6 +72,19 @@ exports.getProdByCategory = async(req, res) =>{
         console.log("Produtos::::", produtos )
        
         res.render('produtos', {layout:'main', produtos})
+        
+    } catch (error) {
+        console.log("error:::", error)
+    }
+}
+
+exports.VerDetalhes = async(req, res) =>{
+    try {
+        const Detalhes = Number(req.params.detalhes)
+        const produtos = await VerDetalhes(Detalhes)
+        console.log("Detalhes::::", produtos )
+       
+        res.render('detalhes', {layout:'main', produtos})
         
     } catch (error) {
         console.log("error:::", error)
