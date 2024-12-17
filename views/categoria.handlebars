@@ -16,18 +16,20 @@
         <h1>Produtos disponíveis</h1>
         <h2>Categorias:</h2>
         <div class="produtos">
+            {{#each tipoCategoria}}
             <div class="produto">
-                <img src="/newfiles2/tel.png" alt="Telemóvel" >
-                <button href="/categoria/:id_categoria">Telemóveis</button>
+                <img src="/newfiles2/tel.png"  >
+                <a href="/produtosCategoria/{{id}}">{{tipo_categoria}}</a>
             </div>
-            <div class="produto">
+            {{/each }}
+            {{!-- <div class="produto">
                 <img src="/newfiles2/pc.png" alt="Computador">
                 <button href="/categoria/:id_categoria">Computadores</button>
             </div>
             <div class="produto">
                 <img src="/newfiles2/game.png" alt="Vídeo Game">
                 <button ="/categoria/:id_categoria">Vídeo Games</button>
-            </div>
+            </div> --}}
         </div>
     </div>
 </body>

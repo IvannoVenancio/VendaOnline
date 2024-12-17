@@ -38,7 +38,7 @@ h2 {
     height: auto; 
 }
 
-.produto button {
+.produto a {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #005DAA;
@@ -48,6 +48,6 @@ h2 {
     cursor: pointer;
 }
 
-.produto button:hover {
+.produto a:hover {
     background-color: #004080; 
 }

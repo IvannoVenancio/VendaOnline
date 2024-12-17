@@ -1,5 +1,5 @@
 const { findAllCategoryTypes } = require("../services/Categoria")
-const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct, getProductsByCategory, getProdByCategory } = require("../services/Produto")
+const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct, getProdByCategory, getProductsByIdCategoria } = require("../services/Produto")
 
 exports.cadastroproduto = async(req, res)=>{
     try {
@@ -56,7 +56,7 @@ exports.prodByCategoria = async(req, res) =>{
     try {
         const idCategoria = Number(req.params.id_categoria)
         console.log("idCategoria>>>", idCategoria)
-        const produtos = await getProductByIdCategoria(idCategoria)
+        const produtos = await getProductsByIdCategoria(idCategoria)
         console.log("produtos>>>>", produtos)
         res.render('prodByCategoria', {layout:'main2', produtos})
         
@@ -68,9 +68,10 @@ exports.prodByCategoria = async(req, res) =>{
 exports.getProdByCategory = async(req, res) =>{
     try {
         const idCategoria = Number(req.params.id_categoria)
-        const produtos = await getProductsByCategory(idCategoria)
+        const produtos = await getProdByCategory(idCategoria)
+        console.log("Produtos::::", produtos )
        
-        res.render('categoria', {layout:'main', produtos})
+        res.render('produtos', {layout:'main', produtos})
         
     } catch (error) {
         console.log("error:::", error)
@@ -85,17 +86,21 @@ exports.getProdByCategory = async(req, res) =>{
 
 
 
-exports.telephone = async(req, res)=>{
+exports.categoria = async(req, res)=>{
     try {
-        res.render('telephone', {layout:''})
+        const tipoCategoria = await findAllCategoryTypes()
+
+        res.render('categoria', {layout:'',tipoCategoria })
     } catch (error) {
         console.log(error)
     }
 }
 
-exports.game = async(req, res)=>{
+exports.produtos = async(req, res)=>{
     try {
-        res.render('game', {layout:''})
+        const produto = await getAllProducts()
+
+        res.render('produtos', {layout:'', produto})
     } catch (error) {
         console.log(error)
     }

@@ -22,16 +22,22 @@ indexRoutes.get('/cadastro', UserController.view)
 indexRoutes.post('/create_user', UserController.create)
 
 indexRoutes.get('/perfil',UserController.perfil)
+indexRoutes.get('/resumocompras',UserController.resumocompras)
+
 
 
 indexRoutes.get('/cadastroproduto', ProdutoController.view)
 indexRoutes.post('/create_Product', ProdutoController.create)
 
 //indexRoutes.get('/cadastroproduto',ProdutoController.cadastroproduto)
-indexRoutes.get('/telephone',ProdutoController.telephone)
-indexRoutes.get('/computer',ProdutoController.computer)
-indexRoutes.get('/game',ProdutoController.game)
+indexRoutes.get('/produtos',ProdutoController.produtos)
+
+//indexRoutes.get('/computer',ProdutoController.computer)
+//indexRoutes.get('/game',ProdutoController.game)
 indexRoutes.get('/produtos_categoria/:id_categoria',ProdutoController.prodByCategoria)
+
+indexRoutes.get('/produtosCategoria/:id_categoria',ProdutoController.getProdByCategory)
+
 
 indexRoutes.get('/tipoUsuario', TipoUsuarioController.view)
 indexRoutes.post('/tipo_usuario', TipoUsuarioController.create)
@@ -40,8 +46,8 @@ indexRoutes.get('/tipoCategoria',CategoriaController.tipoCategoria)
 indexRoutes.get('/tipoCategoria', CategoriaController.view)
 indexRoutes.post('/tipo_categoria', CategoriaController.create)
 
-// indexRoutes.get('/categoria',ProdutoController.seeAllProducts)
-indexRoutes.get('/categoria/:id_categoria',ProdutoController.getProdByCategory)
+indexRoutes.get('/categoria',ProdutoController.categoria)
+//indexRoutes.get('/categoria/:id_categoria',ProdutoController.getProdByCategory)
 
 
 

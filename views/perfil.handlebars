@@ -1,27 +1,70 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil do Usuário</title>
-  <link rel="stylesheet" href="/css's/perfil.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil do Utilizador</title>
+    <link rel="stylesheet" href="/css's/perfil.css">
 </head>
 <body>
-  <div class="profile-container">
-    <h1>Bem-vindo, {{user.name}}</h1>
-    <img src="{{user.profilePic}}" alt="Imagem de Perfil" class="profile-pic" />
+    <div class="container"><header class="navbar">
+    <div class="header-inner-content">
+        <div class="logo">
+            <h1>Meu Perfil</h1>
+        </div>
+        <div class="nav">
+            <ul>
+                <li><a href="/">Início</a></li>
+                <li><a href="/perfil/{{user.id}}">Perfil</a></li>
+                <li><a href="/perfil/{{user.id}}/resumocompras">Resumo de Compras</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
 
-    <form action="/perfil/{{user.id}}/upload" method="get" enctype="multipart/form-data">
-      <input type="file" name="profilePic" accept="image/*" />
-      <button type="submit">Atualizar Imagem</button>
-    </form>
 
-    <h2>Resumo das Compras</h2>
-    <ul>
-      <li>Pendentes: {{purchasesSummary.pending}}</li>
-      <li>Canceladas: {{purchasesSummary.cancelled}}</li>
-      <li>Concluídas: {{purchasesSummary.completed}}</li>
-    </ul>
-  </div>
+        <main>
+            <div class="header-bottom-side">
+                <div class="header-bottom-side-left">
+                    <h2>Detalhes do Perfil</h2>
+                    <form action="/perfil/{{user.id}}" method="POST">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" value="{{user.name}}" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="{{user.email}}" required>
+
+                        <p>Tipo de Utilizador: <strong>{{tipo_usuario}}</strong></p>
+
+                        <button type="submit">Salvar Alterações</button>
+                    </form>
+                </div>
+                <div class="header-bottom-side-right">
+                    <button><a href="{{user.id}}/resumocompras">Ver Resumo de Compras</a></button>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="footer-content">
+    <div class="download-options">
+        <p>Baixe nosso app:</p>
+        <div>
+            <img src="app-store.png" alt="Baixar na App Store">
+            <img src="google-play.png" alt="Baixar na Google Play">
+        </div>
+    </div>
+    <div class="logo-footer">
+        <img src="logo-footer.png" alt="Logo">
+    </div>
+    <div class="links-footer">
+        <h3>Links Úteis</h3>
+        <ul>
+            <li><a href="#">Termos e Condições</a></li>
+            <li><a href="#">Privacidade</a></li>
+            <li><a href="#">Suporte</a></li>
+        </ul>
+    </div>
+</footer>
+
 </body>
 </html>

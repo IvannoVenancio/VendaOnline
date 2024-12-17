@@ -61,10 +61,17 @@ const getProductByIdCategoria = async(tipoCategoriaId) =>{
     return result
 }
 
+const getProductsByIdCategoria = async(tipoCategoriaId) =>{
+    const result = await Produto.findMany({where:{tipoCategoriaId: tipoCategoriaId}})    
+    return result
+}
+
 const getProdByCategory = async(tipoCategoriaId) =>{
   const result = await Produto.findMany({where:{tipoCategoriaId: tipoCategoriaId}})    
   return result
 }
 
 
-module.exports = { createProduct, getAllProducts, getProductByIdCategoria, getProdByCategory }
+
+
+module.exports = { createProduct, getAllProducts, getProductByIdCategoria, getProdByCategory, getProductsByIdCategoria }

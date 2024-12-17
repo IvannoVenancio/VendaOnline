@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumo de Compras</title>
+    <link rel="stylesheet" href="/css's/resumocompras.css">
+</head>
+<body>
+    <div class="container">
+        <header class="navbar">
+            <div class="header-inner-content">
+                <div class="logo">
+                    <h1>Resumo de Compras</h1>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="/">Início</a></li>
+                        <li><a href="/perfil/{{userId}}">Voltar ao Perfil</a></li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="header-bottom-side gray-background">
+                <h2>Suas Compras</h2>
+                <div class="subtitle-underline-gray"></div>
+
+                <div class="cols-3">
+                    {{#each compras}}
+                    <div class="product">
+                        <h3>Compra ID: {{this.id}}</h3>
+                        <p><strong>Total:</strong> {{this.total}}€</p>
+                        <p><strong>Data:</strong> {{this.data}}</p>
+                    </div>
+                    {{else}}
+                    <p>Nenhuma compra encontrada.</p>
+                    {{/each}}
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

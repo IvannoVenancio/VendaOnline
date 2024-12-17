@@ -51,8 +51,17 @@ exports.login = async(req, res)=>{
 
 exports.perfil = async(req, res)=>{
     try {
-        res.render('perfil', {users})
+        res.render('perfil')
     } catch (error) {
         console.log(error)
     }
 }
+
+exports.resumocompras = async(req, res)=>{
+    try {
+        res.render('resumocompras')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
