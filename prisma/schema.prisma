@@ -14,10 +14,25 @@ model User {
   tipo_usuario String   // Tipo de relacionamento por string
   senha        String   @db.VarChar(100)
   TipoUsuario  TipoUsuario @relation("user_tipo_usuario", fields: [tipo_usuario], references: [type]) // Relacionamento via 'type'
+  perfil   Perfil?   @relation(fields: [perfilId], references: [id])
+  perfilId Int?
   created_at   DateTime @default(now())
   updated_at   DateTime @updatedAt @default(now())
 
   @@map("user")
+}
+
+
+
+model Perfil {
+  id          Int       @id @default(autoincrement())
+  nome_utilizador String?
+  descricao   String?
+  perfil_usuario    User[]
+  created_at   DateTime @default(now())
+  updated_at   DateTime @updatedAt @default(now())
+
+  @@map("perfil")
 }
 
 model TipoUsuario {
@@ -44,12 +59,12 @@ model TipoCategoria {
 model Produto {
   id               Int           @id @default(autoincrement()) // Chave primária com auto incremento
   nome_produto     String        @db.VarChar(100) // Nome do produto
-  descricao        String?       // Descrição do produto (opcional)
+  descricao        String?       @db.VarChar(1000)// Descrição do produto (opcional)
   preco            Float         // Preço do produto
   quantidade       Int           // Quantidade disponível
   tipoCategoriaId  Int           // Referência ao ID de tipoCategoria (chave estrangeira)
   tipo_categoria   TipoCategoria @relation("Produtos_TipoCategoria", fields: [tipoCategoriaId], references: [id]) // Relacionamento com TipoCategoria
-  detalhes         String        @db.VarChar(400)
+  detalhes         String        @db.VarChar(1500)
   imagem           String?       @db.VarChar(255)
   data_cadastro    DateTime      @default(now()) // Data de cadastro do produto
   created_at       DateTime      @default(now()) // Data de criação

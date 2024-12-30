@@ -1,11 +1,16 @@
 <h1>hiiiiii2</h1>
-
-<div class="produto">
+      <link rel="stylesheet" href="/css's/produtos.css">
+<table>
     <div class="produto">
-        {{#each produtos}}
-                         {{nome_produto}}
-                  <br>{{descricao}}
-                  <br>{{preco}}
-        {{/each}}
+    {{#each produtos}}
+    <div class="produto-item">
+         <td>
+          <img src="/img/{{imagem}}" width="40" height="40" alt="{{nome_produto}}">
+          </td>
+
+        <h2>{{nome_produto}}</h2>
+        <p><strong>Descrição:</strong> {{descricao}}</p>
+        <p><strong>Preço:</strong> {{preco}} Kz</p>
     </div>
+    {{/each}}
 </div>

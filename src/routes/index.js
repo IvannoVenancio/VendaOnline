@@ -8,8 +8,7 @@ const HomeController = require ('../controllers/HomeController')
 const ProdutoController = require ('../controllers/ProdutoController')
 const TipoUsuarioController = require ('../controllers/TipoUsuarioController')
 const CategoriaController = require ('../controllers/CategoriaController')
-//const multer = require ('multer');
-// const upload = require ('../public/uploads');
+const { upload } = require('../middleware/multer')
 
 
 indexRoutes.get('/', UserController.home)
@@ -27,7 +26,7 @@ indexRoutes.get('/resumocompras',UserController.resumocompras)
 
 
 indexRoutes.get('/cadastroproduto', ProdutoController.view)
-indexRoutes.post('/create_Product', ProdutoController.create)
+indexRoutes.post('/create_Product',  upload.single('imagem'),ProdutoController.create)
 
 //indexRoutes.get('/cadastroproduto',ProdutoController.cadastroproduto)
 indexRoutes.get('/produtos',ProdutoController.produtos)
@@ -38,6 +37,15 @@ indexRoutes.get('/produtos_categoria/:id_categoria',ProdutoController.prodByCate
 
 indexRoutes.get('/produtosCategoria/:id_categoria',ProdutoController.getProdByCategory)
 indexRoutes.get('/detalhes_produto/:detalhes',ProdutoController.VerDetalhes)
+indexRoutes.get('/detalhes_produto/:id',ProdutoController.VerDetalhes)
+
+// Rota de atualização
+indexRoutes.put('/produto/:id', ProdutoController.updateProduct);
+
+// Rota de exclusão
+indexRoutes.delete('/produto/:id', ProdutoController.deleteProduct);
+
+indexRoutes.get('/detalhes',ProdutoController.detalhes)
 
 
 
@@ -55,7 +63,11 @@ indexRoutes.get('/categoria',ProdutoController.categoria)
 
 
 
+
 indexRoutes.get('/login', UserController.login)
+indexRoutes.post('/login', UserController.validateLogin)
+indexRoutes.post('/validateLogin', UserController.validateLogin);
+
 
 indexRoutes.get('/welcome', HomeController.welcome)
 

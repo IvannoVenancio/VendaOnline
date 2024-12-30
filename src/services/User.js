@@ -25,6 +25,8 @@ module.exports = { createUser, findAllUsers, getUserById, deleteUser }*/
 
 
 const {PrismaClient} = require('@prisma/client')
+//const bcrypt = require('bcrypt'); // Para senhas criptografadas
+
 
 const prisma = new PrismaClient()
 const User = prisma.user
@@ -38,5 +40,10 @@ const findAllUsers = async() =>{
     const result = await User.findMany()    
     return result
 }
+const validateLogin = async(email,senha) =>{
+    const result = await User.findUnique({where:{email:email, senha: senha}})    
+    return result
+}
 
-module.exports = { createUser, findAllUsers }
+
+module.exports = { createUser, findAllUsers, validateLogin }

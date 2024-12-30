@@ -3,6 +3,7 @@ const prisma = new PrismaClient()
 
 const Produto = prisma.produto;
 const Categoria = prisma.tipoCategoria;
+const detalhes = prisma.detalhes;
 
 
 // const getAllProducts = async () => {
@@ -15,18 +16,18 @@ const Categoria = prisma.tipoCategoria;
 //     return result;
 // };
 
-// const updateProduct = async (id, data) => {
-//     const result = await Produto.update({
-//         where: { id },
-//         data,
-//     });
-//     return result;
-// };
+ const updateProduct = async (id, data) => {
+     const result = await Produto.update({
+         where: { id },
+         data,
+     });
+     return result;
+ };
 
-// const deleteProduct = async (id) => {
-//     const result = await Produto.delete({ where: { id } });
-//     return result;
-// };
+ const deleteProduct = async (id) => {
+     const result = await Produto.delete({ where: { id } });
+     return result;
+ };
 
 // // Exportando as funções
 // module.exports = {
@@ -72,12 +73,12 @@ const getProdByCategory = async(tipoCategoriaId) =>{
 }
 
 
-const VerDetalhes = async(Detalhes) =>{
-    const result = await Detalhes.findFirst({where:{Detalhes: Detalhes}})    
+const VerDetalhes = async(detalhes) =>{
+    const result = await detalhes.findFirst({where:{detalhes: detalhes}})    
     return result
   }
 
 
 
 
-module.exports = { createProduct, getAllProducts, getProductByIdCategoria, getProdByCategory, getProductsByIdCategoria, VerDetalhes }
+module.exports = { createProduct,deleteProduct,updateProduct, getAllProducts, getProductByIdCategoria, getProdByCategory, getProductsByIdCategoria, VerDetalhes }

@@ -15,7 +15,6 @@ exports.cadastro = async(req, res)=>{
     }
 }
 
-const { createUser, findAllUsers,getUserById, deleteUser } = require("../services/User")
 
 
 exports.view = async(req, res) =>{
@@ -40,14 +39,48 @@ exports.create = async(req, res) =>{
 
 
 
-exports.login = async(req, res)=>{
-    try {
-        res.render('login')
-    } catch (error) {
-        console.log(error)
-    }
-}
+  exports.login = async(req, res)=>{
+      try {
+          res.render('login')
+      } catch (error) {
+          console.log(error)
+      }
+  }
 
+
+// exports.validateLogin = async (req, res) => {
+//     const { email, senha } = req.body // Os dados enviados pelo formulário
+//     await validateLogin({
+//       where: { email: email,   // Busca pelo email
+//         senha: senha },
+//     });
+  
+//     if (!User || User.senha !== senha) {
+//       // Se a senha for incorreta, redireciona de volta com um erro
+//       return res.render('login', { error: 'Usuário ou senha incorretos' });
+//     }
+  
+//     // Se o login for bem-sucedido, redireciona para a página inicial
+//     res.redirect('/home');
+//   };
+
+
+exports.validateLogin = async (req, res) => {
+    try {
+        const { email, senha } = req.body;
+
+        const user = await validateLogin(email, senha);
+
+        if (!user) {
+            res.send("Login falhou: Usuário ou senha inválidos.");
+        } else {
+            res.send("Login realizado com sucesso!");
+        }
+    } catch (error) {
+        console.error("Erro ao validar login:", error);
+        res.send("Ocorreu um erro ao tentar realizar o login.");
+    }
+};
 
 exports.perfil = async(req, res)=>{
     try {
@@ -57,6 +90,8 @@ exports.perfil = async(req, res)=>{
     }
 }
 
+
+
 exports.resumocompras = async(req, res)=>{
     try {
         res.render('resumocompras')
@@ -65,3 +100,4 @@ exports.resumocompras = async(req, res)=>{
     }
 }
 
+const { createUser, findAllUsers,getUserById, deleteUser, validateLogin } = require("../services/User")

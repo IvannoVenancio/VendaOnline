@@ -84,12 +84,63 @@ exports.VerDetalhes = async(req, res) =>{
         const produtos = await VerDetalhes(Detalhes)
         console.log("Detalhes::::", produtos )
        
-        res.render('detalhes', {layout:'main', produtos})
+        res.render('detalhes', {layout:'main', produtos, Detalhes})
         
     } catch (error) {
         console.log("error:::", error)
     }
 }
+
+
+// Atualização de Produto
+exports.updateProduct = async (req, res) => {
+    try {
+      const { id } = req.params; // ID recebido dos parâmetros
+      const { nome, preco } = req.body; // Dados recebidos do frontend
+      await updateProduct(id, { nome, preco }); // Atualiza no banco de dados
+      const produtos = await getAllProducts(); // Busca todos os produtos atualizados
+      res.render('produtos', { produtos }); // Renderiza a página com os produtos
+    } catch (error) {
+      console.error("Erro ao atualizar o produto:", error);
+      res.status(500).send("Erro interno ao atualizar o produto.");
+    }
+  };
+  
+  // Exclusão de Produto
+  exports.deleteProduct = async (req, res) => {
+    try {
+      const { id } = req.params; // ID recebido dos parâmetros
+      await deleteProduct(id); // Exclui do banco de dados
+      const produtos = await getAllProducts(); // Busca todos os produtos atualizados
+      res.render('produtos', { produtos }); // Renderiza a página com os produtos
+    } catch (error) {
+      console.error("Erro ao excluir o produto:", error);
+      res.status(500).send("Erro interno ao excluir o produto.");
+    }
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exports.detalhes = async(req, res)=>{
+    try {
+        res.render('detalhes')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
 
