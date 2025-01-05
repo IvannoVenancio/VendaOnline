@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Produto</title>
+  <link rel="stylesheet" href="" >
+</head>
+<body>
+
+  <h1>Detalhes do Produto</h1>
+
+  <div>
+    <h2>{{produto.nome_produto}}</h2>
+    <img src="/img/{{produto.imagem}}" alt="{{produto.nome_produto}}">
+    <p>Preço: {{produto.preco}} €</p>
+    <p>Descrição: {{produto.descricao}}</p>
+    <p>Detalhes: {{produto.detalhes}}</p>
+  </div>
+
+  <!-- Botões para Editar e Deletar -->
+  <form action="/produtos2/{{produto.id}}/update" method="post">
+    <button type="submit">Editar Produto</button>
+  </form>
+
+  <form action="/produtos2/{{produto.id}}/delete" method="POST">
+    <button type="submit">Excluir Produto</button>
+  </form>
+
+</body>
+</html>

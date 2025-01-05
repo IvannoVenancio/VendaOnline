@@ -1,3 +1,7 @@
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient()
+
+
 exports.home = async(req, res)=>{
     try {
         
@@ -35,6 +39,8 @@ exports.create = async(req, res) =>{
         console.log("error:::", error)
     }
 }
+
+
 
 
 
@@ -100,4 +106,109 @@ exports.resumocompras = async(req, res)=>{
     }
 }
 
-const { createUser, findAllUsers,getUserById, deleteUser, validateLogin } = require("../services/User")
+exports.listaUsers = async(req, res)=>{
+    try {
+        res.render('listaUsers')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.atualizarUser = async(req, res)=>{
+    try {
+        res.render('atualizarUser')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.viewAllUsers = async (req, res) => {
+    try {
+      const users = await prisma.user.findMany();
+      res.render("listaUsers", { users }); // Renderiza a lista de utilizadores
+    } catch (error) {
+      console.error("Erro ao buscar todos os utilizadores:", error);
+      res.status(500).send("Erro ao carregar a lista de utilizadores");
+    }
+  }
+  
+
+// Visualiza um único usuário
+exports.viewUserById = async (req, res) => {
+    try {
+      const { id } = req.params;
+      const user = await getUserById(id);
+      if (!user) return res.status(404).send("Usuário não encontrado.");
+      res.render('listaUserbyId', { user });
+    } catch (error) {
+      console.error("Erro ao buscar usuário por ID:", error);
+      res.status(500).send("Erro ao buscar usuário.");
+    }
+  };
+
+  exports.editUserForm = async (req, res) => {
+    try {
+        const userId = req.params.id;
+
+        // Buscar o usuário pelo ID
+        const user = await prisma.user.findUnique({
+            where: { id: parseInt(userId) },
+        });
+
+        if (!user) {
+            return res.status(404).send("Usuário não encontrado.");
+        }
+
+        // Renderizar a página com os dados do usuário
+        res.render("atualizarUser", { user });
+    } catch (error) {
+        console.error("Erro ao buscar o usuário:", error);
+        res.status(500).send("Erro ao carregar o formulário de edição.");
+    }
+}
+
+
+  exports.updateUser = async (req, res) => {
+    try {
+  
+      const { id } = req.params;
+      const { name, email, senha } = req.body; // Dados recebidos do formulário
+
+      await updateUser(id, {
+          name,
+          senha,
+          email 
+      });
+      res.redirect('/listaUsers');
+    } catch (error) {
+      console.error("Erro ao atualizar produto:", error);
+      res.status(500).send("Erro ao atualizar produto.");
+    }
+  };
+  
+  
+  
+  
+    
+
+
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    await prisma.user.delete({
+      where: { id: parseInt(id) },
+    });
+
+    res.redirect("/listaUsers");
+  } catch (error) {
+    console.error("Erro ao deletar o utilizador:", error);
+    res.status(500).send("Erro ao deletar o utilizador.");
+  }
+};
+
+
+
+
+const { createUser, findAllUsers,getUserById, deleteUser, validateLogin, viewAllUsers, updateUser } = require("../services/User")

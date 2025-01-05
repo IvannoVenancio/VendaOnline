@@ -1,8 +1,9 @@
 const { findAllCategoryTypes } = require("../services/Categoria")
-const { createProduct, updateProduct, getAllProducts, getProductById, deleteProduct, getProdByCategory, getProductsByIdCategoria, VerDetalhes } = require("../services/Produto")
+const { createProduct, getAllProducts, getProdByCategory, getProductsByIdCategoria, VerDetalhes, editarProductForm , deletarProduto,atualizarProduto, deleteProduct, getProductById, updateProduct, VerDetalhesEdit} = require("../services/Produto")
 
 exports.cadastroproduto = async(req, res)=>{
     try {
+      
         res.render('cadastroproduto', {layout:'cadastroLogin'})
     } catch (error) {
         console.log(error)
@@ -37,21 +38,41 @@ exports.view = async(req, res) =>{
     try {
         const produto = await getAllProducts()
         const tipoCategoria = await findAllCategoryTypes()
-        res.render('cadastroproduto', {produto, tipoCategoria})        
+       // Converte a imagem para base64 para exibir no front-end
+      // Converte as imagens em binário para Base64 para exibição
+    const produtosComImagemBase64 = produto.map((produto) => ({
+        ...produto,
+        imagemBase64: produto.imagem ? produto.imagem.toString('base64') : null,
+      }));
+        res.render('cadastroproduto', {produto, tipoCategoria, produto:produtosComImagemBase64 })        
     } catch (error) {
         console.log("error:::", error)
     }
 }
-exports.create = async(req, res) =>{
-    try {
-        const data = req.body
-        await createProduct(data)
-        res.redirect('/cadastroproduto')
-        
-    } catch (error) {
-        console.log("error:::", error)
-    }
-}
+
+exports.create = async (req, res) => {
+  try {
+    const { nome_produto, descricao, preco, quantidade, detalhes, tipoCategoriaId } = req.body;
+    const imagem = req.file ? `/img/${req.file.filename}` : null; // Caminho da imagem
+
+    const data = {
+      nome_produto,
+      descricao,
+      preco,
+      quantidade,
+      detalhes,
+      tipoCategoriaId,
+      imagem,
+    };
+
+    await createProduct(data);
+    res.redirect('/cadastroproduto');
+  } catch (error) {
+    console.error("Erro ao cadastrar produto:", error);
+    res.status(500).send("Erro ao cadastrar produto.");
+  }
+};
+
 exports.prodByCategoria = async(req, res) =>{
     try {
         const idCategoria = Number(req.params.id_categoria)
@@ -69,7 +90,7 @@ exports.getProdByCategory = async(req, res) =>{
     try {
         const idCategoria = Number(req.params.id_categoria)
         const produtos = await getProdByCategory(idCategoria)
-        console.log("Produtos::::", produtos )
+        console.log("Produtos::::i", produtos )
        
         res.render('produtos', {layout:'main', produtos})
         
@@ -91,47 +112,129 @@ exports.VerDetalhes = async(req, res) =>{
     }
 }
 
+exports.VerDetalhesEdit = async (req, res) => {
+  try {
+      const detalhesId = req.params.detalhes; // Aqui é onde o parâmetro 'detalhes' é capturado
+      if (!detalhesId) {
+          return res.status(400).send('ID do produto não fornecido');
+      }
 
-// Atualização de Produto
+      const produto = await produto.findUnique({
+          where: {
+              id: Number(detalhesId) // Certifique-se de que detalhesId é um número
+          }
+      });
+
+      if (!produto) {
+          return res.status(404).send('Produto não encontrado');
+      }
+
+      console.log("Detalhes:::1", produto); // Verifique no console
+      res.render('detalhes', { layout: 'main', produto });
+
+  } catch (error) {
+      console.log("error:::", error); // Log do erro para depuração
+      res.status(500).send('Erro interno do servidor');
+  }
+};
+
+
+exports.detalhesEditar = async(req, res)=>{
+  try {
+      res.render('detalhesEditar')
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+
+
+
+
+// Mostrar formulário de edição
+exports.showEditForm = async (req, res) => {
+  try {
+      const { id } = req.params;
+      const produto = await getProductById(id); // Busca o produto pelo ID
+      const { tipoCategoriaId } = req.body;
+
+
+      res.render('atualizarProduto', { produto, tipoCategoriaId });
+  } catch (error) {
+      console.error("Erro ao carregar formulário de edição:", error);
+      res.status(500).send("Erro ao carregar formulário de edição.");
+  }
+};
+
+
+
+// Atualizar produto
 exports.updateProduct = async (req, res) => {
-    try {
-      const { id } = req.params; // ID recebido dos parâmetros
-      const { nome, preco } = req.body; // Dados recebidos do frontend
-      await updateProduct(id, { nome, preco }); // Atualiza no banco de dados
-      const produtos = await getAllProducts(); // Busca todos os produtos atualizados
-      res.render('produtos', { produtos }); // Renderiza a página com os produtos
-    } catch (error) {
-      console.error("Erro ao atualizar o produto:", error);
-      res.status(500).send("Erro interno ao atualizar o produto.");
+  try {
+
+    const { id } = req.params;
+    const { nome_produto, preco, descricao, quantidade, detalhes, tipoCategoriaId } = req.body;
+    const imagePath = req.file ? `/img/${req.file.filename}` : null;
+
+    // Converter preço e quantidade para números
+    const precoFloat = parseFloat(preco); // Converte para Float
+    const quantidadeInt = parseInt(quantidade, 10); // Converte para inteiro
+
+    if (isNaN(precoFloat) || isNaN(quantidadeInt)) {
+      return res.status(400).send("Preço ou quantidade inválidos.");
     }
-  };
+
+    await updateProduct(id, {
+        nome_produto,
+        preco: precoFloat,
+        descricao,
+        quantidade: quantidadeInt,
+        detalhes,
+        tipoCategoriaId,
+        imagem: imagePath,
+    });
+    res.redirect('/produtos');
+  } catch (error) {
+    console.error("Erro ao atualizar produto:", error);
+    res.status(500).send("Erro ao atualizar produto.");
+  }
+};
+
+
+// Deletar produto
+exports.deleteProduct = async (req, res) => {
+  try {
+      const { id } = req.params;
+      await deleteProduct(id); // Deleta o produto pelo ID
+      res.redirect('/produtos');
+  } catch (error) {
+      console.error("Erro ao deletar produto:", error);
+      res.status(500).send("Erro ao deletar produto.");
+  }
+};
+
+
+
+
+
+
+
+
+
+ 
+exports.getProdByCategory = async(req, res) =>{
+    try {
+        const idCategoria = Number(req.params.id_categoria)
+        const produtos = await getProdByCategory(idCategoria)
+        console.log("Produtos2::::io", produtos )
+       
+        res.render('produtos', {layout:'main', produtos})
+        
+    } catch (error) {
+        console.log("error:::", error)
+    }
+}
   
-  // Exclusão de Produto
-  exports.deleteProduct = async (req, res) => {
-    try {
-      const { id } = req.params; // ID recebido dos parâmetros
-      await deleteProduct(id); // Exclui do banco de dados
-      const produtos = await getAllProducts(); // Busca todos os produtos atualizados
-      res.render('produtos', { produtos }); // Renderiza a página com os produtos
-    } catch (error) {
-      console.error("Erro ao excluir o produto:", error);
-      res.status(500).send("Erro interno ao excluir o produto.");
-    }
-  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 exports.detalhes = async(req, res)=>{
     try {
@@ -178,3 +281,97 @@ exports.computer = async(req, res)=>{
     }
 }
 
+
+
+const mostrarFormularioEdicao = async (req, res) => {
+    const { id } = req.params;
+    try {
+      const produto = await produto.findUnique({
+        where: { id: parseInt(id) },
+      });
+  
+      if (!produto) {
+        return res.status(404).send('Produto não encontrado.');
+      }
+  
+      res.render('atualizarProduto', { produto });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao carregar o produto.');
+    }
+  };
+  
+  exports.atualizarProduto = async (req, res) => {
+    const produtos = await getAllProducts(); // Busca todos os produtos atualizados
+    const produto = await atualizarProduto(); // Busca todos os produtos atualizados
+
+
+    const { id } = req.params;
+    const { nome_produto, preco, quantidade, descricao, detalhes  } = req.body;
+  
+    try {
+      await produtos.update({
+        where: { id: parseInt(id) },
+        data: { nome_produto, preco: parseFloat(preco), quantidade, descricao,detalhes ,
+
+         },
+      });
+  
+      res.redirect('/produtos', {produto, produtos}); // Redireciona para a lista de produtos
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao atualizar o produto.');
+    }
+  };
+
+ 
+  exports.deletarProduto = async (req, res) => {
+
+    const produto = await getAllProducts(); // Busca todos os produtos atualizados
+    const produtos = await deletarProduto(); // Busca todos os produtos atualizados
+
+
+    const { id } = req.params;
+  
+    try {
+      await produto.delete({
+        where: { id: parseInt(id) },
+      });
+  
+      res.redirect('/produtos' ,{produto, produtos}); // Redireciona para a lista de produtos
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erro ao deletar o produto.');
+    }
+  };
+
+  // Função para buscar todos os produtos e renderizar a página
+ exports.getAllProducts = async (req, res) => {
+  try {
+    const produtos = await produtos.findMany(); // Supondo que a tabela seja "product"
+    res.render('/produtos2', { produtos }); // Renderiza a view 'products/index' com os produtos
+  } catch (error) {
+    console.error('Erro ao buscar produtos:', error);
+    res.status(500).send('Erro ao buscar produtos');
+  }
+};
+
+// Função para buscar um produto pelo ID e renderizar a página
+ exports.getProductById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const produtos = await produtos.findUnique({
+      where: { id: Number(id) }, // Ajuste o tipo de ID caso necessário
+    });
+
+    if (!product) {
+      return res.status(404).send('Produto não encontrado');
+    }
+
+    res.render('produtos2/detalhes', { produtos }); // Renderiza a view 'products/show' com o produto
+  } catch (error) {
+    console.error('Erro ao buscar produto por ID:', error);
+    res.status(500).send('Erro ao buscar produto');
+  }
+};

@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+    <tr>
+      <td>{{id}}</td>
+      <td>{{name}}</td>
+      <td>{{email}}</td>
+      <td>
+        <!-- Botão para editar -->
+        <a href="/users/{{this.id}}/edit" class="btn btn-primary">Editar</a>
+
+        <!-- Botão para deletar -->
+        <form action="/users/{{this.id}}/delete" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Deletar</button>
+        </form>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+

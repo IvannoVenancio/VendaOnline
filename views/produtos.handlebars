@@ -1,16 +1,38 @@
 <h1>hiiiiii2</h1>
       <link rel="stylesheet" href="/css's/produtos.css">
-<table>
-    <div class="produto">
-    {{#each produtos}}
-    <div class="produto-item">
-         <td>
-          <img src="/img/{{imagem}}" width="40" height="40" alt="{{nome_produto}}">
-          </td>
+      
+      <div class="container">
+    <h1>Lista de Produtos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each produtos}}
+            <tr>
+                <td>
+                    <img src="{{imagem}}" width="40" height="40" alt="Imagem do {{nome_produto}}">
+                </td>
+                <td>{{nome_produto}}</td>
+                <td>{{descricao}}</td>
+                <td>{{preco}} Kz</td>
 
-        <h2>{{nome_produto}}</h2>
-        <p><strong>Descrição:</strong> {{descricao}}</p>
-        <p><strong>Preço:</strong> {{preco}} Kz</p>
-    </div>
-    {{/each}}
+                <td>
+                    <!-- Botões de Editar e Deletar -->
+                     <a href="/produtos/{{id}}/editar" class="btn btn-edit">Editar</a>
+                     <form action="/produtos/{{id}}/deletar" method="POST" style="display:inline;">
+                       <button type="submit" class="btn btn-delete">Deletar</button>
+                          </form>
+  </div>
+                </td>
+            </tr>
+
+            {{/each}}
+        </tbody>
+    </table>
 </div>

@@ -1,0 +1,45 @@
+
+<!-- Formulário de Edição -->
+  <h1>Editar Produto</h1>
+<form action="/produtos/{{produto.id}}/atualizar" enctype="multipart/form-data" method="post">
+    <label>Nome:</label>
+    <input type="text" name="nome_produto" value="{{produto.nome_produto}}" required>
+    
+    <label>Descrição:</label>
+    <textarea name="descricao" required>{{produto.descricao}}</textarea>
+    
+    <label>Preço:</label>
+    <input type="text" name="preco" value="{{produto.preco}}" required>
+    
+    <label>Quantidade:</label>
+    <input type="number" name="quantidade" value="{{produto.quantidade}}" required>
+    
+    <label>Detalhes:</label>
+    <input type="text" name="detalhes" value="{{produto.detalhes}}" required>
+    
+   
+  <!-- Exibir a imagem atual -->
+  <img src="{{produto.imagem}}" alt="Imagem do Produto" width="100" height="100">
+
+  <!-- Campo oculto para imagem atual -->
+  <input type="hidden" name="imagemAtual" value="{{produto.imagem}}">
+
+  
+<!-- Formulário de atualização do produto -->
+<form action="/produto/atualizar/{{produto.id}}" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="imagem">Atualizar Imagem</label>
+    <input type="file" name="imagem" id="imagem">
+    <input type="hidden" name="imagemAtual" value="{{produto.imagem}}"> <!-- Enviar a imagem atual caso o usuário não queira trocar -->
+  </div>
+    
+    <label>Categorias:</label>{{#each tipoCategoria}}          
+                <input type="radio" id="" value="{{id}}" name="tipoCategoriaId" >
+                <label for="mobile">{{tipo_categoria}}</label><br>
+                {{/each}}
+
+    <button type="submit">Atualizar</button>
+</form>
+
+
+

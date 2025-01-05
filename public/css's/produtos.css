@@ -1,4 +1,4 @@
-/* Estilos gerais para a página */
+/* Estilos gerais para a página
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -40,6 +40,13 @@ body {
     margin: 5px 0;
 }
 
+.produto img {
+    width: 100px; /* ajuste conforme necessário *
+    height: auto;
+    display: block;
+    margin: 0 auto; /* para centralizar *
+  }
+
 .produto-item p strong {
     font-weight: bold;
     color: #333;
@@ -54,5 +61,82 @@ body {
     .produto-item {
         width: 80%;
         margin-bottom: 15px;
+    }
+} 
+*/
+/* Estilos gerais para a página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* Estilo para o cabeçalho da página */
+h1 {
+    font-size: 2em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table th, table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Estilo para a imagem na tabela */
+table img {
+    width: 60px; /* ajustável */
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover; /* Garante que a imagem fique proporcional */
+}
+
+/* Estilo responsivo */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    table {
+        font-size: 0.9em;
+    }
+
+    table img {
+        width: 50px;
+        height: 50px;
     }
 }

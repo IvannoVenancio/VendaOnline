@@ -65,7 +65,8 @@ model Produto {
   tipoCategoriaId  Int           // Referência ao ID de tipoCategoria (chave estrangeira)
   tipo_categoria   TipoCategoria @relation("Produtos_TipoCategoria", fields: [tipoCategoriaId], references: [id]) // Relacionamento com TipoCategoria
   detalhes         String        @db.VarChar(1500)
-  imagem           String?       @db.VarChar(255)
+  imagem           String?       @db.VarChar(1500)
+
   data_cadastro    DateTime      @default(now()) // Data de cadastro do produto
   created_at       DateTime      @default(now()) // Data de criação
   updated_at       DateTime      @updatedAt // Data de atualização automática
