@@ -8,89 +8,83 @@ datasource db {
 }
 
 model User {
-  id           Int      @id @default(autoincrement())
-  email        String   @unique @db.VarChar(100)
-  name         String
-  tipo_usuario String   // Tipo de relacionamento por string
-  senha        String   @db.VarChar(100)
-  TipoUsuario  TipoUsuario @relation("user_tipo_usuario", fields: [tipo_usuario], references: [type]) // Relacionamento via 'type'
-  perfil   Perfil?   @relation(fields: [perfilId], references: [id])
-  perfilId Int?
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt @default(now())
+  id              Int           @id @default(autoincrement())
+  email           String        @unique @db.VarChar(100)
+  name            String
+  tipo_usuario    String
+  senha           String        @db.VarChar(100)
+  tipo_usuario_rel TipoUsuario  @relation("user_tipo_usuario", fields: [tipo_usuario], references: [type])
+  perfilId        Int?
+  perfil          Perfil?       @relation(fields: [perfilId], references: [id])
+  resumoCompras   ResumoCompra[]
+  endereco        Endereco[]    // Relacionamento com Endereco
+  carrinho        Carrinho[]    // Relacionamento com Carrinho
+  avaliacoes      Avaliacao[]   // Relacionamento com Avaliação
+  pedidos         Pedido[]      // Relacionamento com Pedido
+  created_at      DateTime      @default(now())
+  updated_at      DateTime      @updatedAt @default(now())
 
   @@map("user")
 }
 
-
-
 model Perfil {
-  id          Int       @id @default(autoincrement())
+  id              Int      @id @default(autoincrement())
   nome_utilizador String?
-  descricao   String?
-  perfil_usuario    User[]
-  created_at   DateTime @default(now())
-  updated_at   DateTime @updatedAt @default(now())
+  descricao       String?
+  perfil_usuario  User[]   // Relacionamento com usuários
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt @default(now())
 
   @@map("perfil")
 }
 
 model TipoUsuario {
-  id         Int      @id @default(autoincrement()) // Chave primária como inteiro
-  type       String   @db.VarChar(30) @unique              // 'type' para a relação
+  id         Int      @id @default(autoincrement())
+  type       String   @db.VarChar(30) @unique
+  users      User[]   @relation("user_tipo_usuario") // Relacionamento de volta para User
   created_at DateTime @default(now()) @db.Timestamp(6)
   updated_at DateTime @updatedAt @default(now())
-  User       User[]   @relation("user_tipo_usuario") // Relacionamento com base no 'type'
 
   @@map("tipo_usuario")
-
 }
-model TipoCategoria {
-  id             Int       @id @default(autoincrement()) // Chave primária com auto incremento
-  tipo_categoria String    @db.VarChar(30) @unique // Nome da categoria (ex: "Telemovél")
-  imagem         String?    @db.VarChar(255)
-  created_at     DateTime  @default(now()) @db.Timestamp(6) // Data de criação
-  updated_at     DateTime  @updatedAt @default(now())// Data de atualização automática
-  produtos       Produto[] @relation("Produtos_TipoCategoria") // Relacionamento com Produto, sem fields e references
 
-  @@map("tipo_categoria") // Nome da tabela no banco de dados
+model TipoCategoria {
+  id             Int       @id @default(autoincrement())
+  tipo_categoria String    @db.VarChar(30) @unique
+  imagem         String?   @db.VarChar(255)
+  produtos       Produto[] @relation("Produtos_TipoCategoria") // Relacionamento com Produto
+  created_at     DateTime  @default(now()) @db.Timestamp(6)
+  updated_at     DateTime  @updatedAt @default(now())
+
+  @@map("tipo_categoria")
 }
 
 model Produto {
-  id               Int           @id @default(autoincrement()) // Chave primária com auto incremento
-  nome_produto     String        @db.VarChar(100) // Nome do produto
-  descricao        String?       @db.VarChar(1000)// Descrição do produto (opcional)
-  preco            Float         // Preço do produto
-  quantidade       Int           // Quantidade disponível
-  tipoCategoriaId  Int           // Referência ao ID de tipoCategoria (chave estrangeira)
-  tipo_categoria   TipoCategoria @relation("Produtos_TipoCategoria", fields: [tipoCategoriaId], references: [id]) // Relacionamento com TipoCategoria
+  id               Int           @id @default(autoincrement())
+  nome_produto     String        @db.VarChar(100)
+  descricao        String?       @db.VarChar(1000)
+  preco            Float
+  quantidade       Int
+  tipoCategoriaId  Int
+  tipo_categoria   TipoCategoria @relation("Produtos_TipoCategoria", fields: [tipoCategoriaId], references: [id])
   detalhes         String        @db.VarChar(1500)
   imagem           String?       @db.VarChar(1500)
+  resumoCompras    ResumoCompra[] // Relacionamento com ResumoCompra
+  avaliacoes       Avaliacao[]   // Relacionamento com Avaliação
+  carrinho         Carrinho[]    // Relacionamento com Carrinho
+  itens            Item[]        // Relacionamento com Item (de volta)
+  created_at       DateTime      @default(now())
+  updated_at       DateTime      @updatedAt
 
-  data_cadastro    DateTime      @default(now()) // Data de cadastro do produto
-  created_at       DateTime      @default(now()) // Data de criação
-  updated_at       DateTime      @updatedAt // Data de atualização automática
-
-  @@map("produto") // Nome da tabela no banco de dados
+  @@map("produto")
 }
-model Pedido {
-  id          Int      @id @default(autoincrement())
-  data_Pedido DateTime @default(now())
-  id_usuario  Int
-  status      String
-  valor_total Float
-  created_at  DateTime @default(now())
-  updated_at  DateTime @updatedAt
-
-  @@map("pedido")
-}
-
-
 
 model Item {
   id             Int      @id @default(autoincrement())
   id_produto     Int
+  produto        Produto  @relation(fields: [id_produto], references: [id]) // Relacionamento com Produto
   id_pedido      Int
+  pedido         Pedido   @relation(fields: [id_pedido], references: [id]) // Relacionamento com Pedido
   quantidade     Int
   preco_unitario Float
   subtotal       Float
@@ -100,28 +94,33 @@ model Item {
   @@map("item")
 }
 
-model ItemPagamento {
-  id             Int      @id @default(autoincrement())
-  id_item        Int
-  id_pedido      Int
-  quantidade     Int
-  preco_unitario Float
-  subtotal       Float
-  created_at     DateTime @default(now())
-  updated_at     DateTime @updatedAt
+model Pedido {
+  id          Int       @id @default(autoincrement())
+  data_Pedido DateTime  @default(now())
+  id_usuario  Int
+  user        User      @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
+  itens       Item[]    // Relacionamento com Item
+  pagamentos  Pagamento[] // Relacionamento com Pagamento
+  status      String
+  valor_total Float
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
 
-  @@map("item_pagamento")
+  @@map("pedido")
 }
 
+
+
 model Pagamento {
-  id               Int      @id @default(autoincrement())
+  id               Int       @id @default(autoincrement())
   id_pedido        Int
+  pedido           Pedido    @relation(fields: [id_pedido], references: [id]) // Relacionamento com Pedido
   valor_pago       Decimal
   metodo_pagamento String
-  data_pagamento   DateTime @default(now())
+  data_pagamento   DateTime  @default(now())
   status_pagamento String
-  created_at       DateTime @default(now())
-  updated_at       DateTime @updatedAt
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
 
   @@map("pagamento")
 }
@@ -129,6 +128,7 @@ model Pagamento {
 model Endereco {
   id         Int      @id @default(autoincrement())
   id_usuario Int
+  user       User     @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
   cidade     String
   provincia  String
   pais       String
@@ -141,7 +141,9 @@ model Endereco {
 model Avaliacao {
   id             Int      @id @default(autoincrement())
   id_produto     Int
+  produto        Produto  @relation(fields: [id_produto], references: [id]) // Relacionamento com Produto
   id_usuario     Int
+  user           User     @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
   nota           Int
   comentario     String?
   data_avaliacao DateTime @default(now())
@@ -154,12 +156,34 @@ model Avaliacao {
 model Carrinho {
   id               Int      @id @default(autoincrement())
   id_usuario       Int
+  user             User     @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
+  id_produto       Int
+  produto          Produto  @relation(fields: [id_produto], references: [id]) // Relacionamento com Produto
+  quantidade       Int      @default(1)
+  valor_unitario   Float
+  total            Float    @default(0)
   data_criacao     DateTime @default(now())
   data_atualizacao DateTime @updatedAt
   status           String
-  imagem           String? @db.VarChar(255)
+  imagem           String?  @db.VarChar(255)
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
 
   @@map("carrinho")
+}
+
+model ResumoCompra {
+  id               Int      @id @default(autoincrement())
+  id_usuario       Int
+  user             User     @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
+  id_produto       Int
+  produto          Produto  @relation(fields: [id_produto], references: [id]) // Relacionamento com Produto
+  quantidade       Int
+  preco_total      Float
+  data_compra      DateTime @default(now())
+  status           String
+  created_at       DateTime @default(now())
+  updated_at       DateTime @updatedAt
+
+  @@map("resumo_compra")
 }
