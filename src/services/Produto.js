@@ -1,6 +1,7 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
-const fs = require('fs')
+const fs = require('fs');
+const { validateLogin } = require('../controllers/UserController');
 
 const Produto = prisma.produto;
 const Categoria = prisma.tipoCategoria;
@@ -99,10 +100,44 @@ const getProductsByIdCategoria = async(tipoCategoriaId) =>{
     return result
 }
 
-const getProdByCategory = async(tipoCategoriaId) =>{
-  const result = await Produto.findMany({where:{tipoCategoriaId: tipoCategoriaId}})    
-  return result
-}
+const getProdByCategory = async (tipoCategoriaId) => {
+  if (!tipoCategoriaId) {
+    throw new Error('tipoCategoriaId is required');
+  }
+
+  const result = await Produto.findMany({
+    where: {
+      tipoCategoriaId: {
+        equals: tipoCategoriaId  // Aqui, use o valor de tipoCategoriaId
+      }
+    }
+  });
+
+  return result;
+};
+
+
+const getProdByIdCategory = async (tipoCategoriaId) => {
+  // Valida o argumento antes de prosseguir
+  if (!tipoCategoriaId) {
+    throw new Error('O tipoCategoriaId é obrigatório.');
+  }
+
+  // Garante que o tipoCategoriaId é um número, caso necessário
+  const idCategoria = Number(tipoCategoriaId);
+  if (isNaN(idCategoria)) {
+    throw new Error('O tipoCategoriaId deve ser um número válido.');
+  }
+
+  // Executa a busca no banco de dados
+  const result = await Produto.findMany({
+    where: { tipoCategoriaId: idCategoria },
+  });
+
+  return result;
+};
+
+
 
 
 const VerDetalhes = async(detalhes) =>{
@@ -127,11 +162,13 @@ const VerDetalhes = async(detalhes) =>{
   const getProductById = async (id) => {
     const result = await Produto.findUnique({
       where: {
-        id: parseInt(id) // Certifica-se de que o ID seja tratado como número
+        id: parseInt(id) // Certifique-se de passar um número inteiro
       }
     });
-    return result; // Retorna o resultado da consulta
+    return result;
   };
+  
+  
 
 
-module.exports = { createProduct,deleteProduct,updateProduct, getAllProducts, getProductByIdCategoria, getProdByCategory, getProductsByIdCategoria, VerDetalhes,editarProductForm,atualizarProduto, getProductById, VerDetalhesEdit }
+module.exports = { createProduct,deleteProduct,updateProduct, getAllProducts, getProductByIdCategoria,getProductsByIdCategoria, getProdByCategory, getProdByIdCategory, VerDetalhes,editarProductForm,atualizarProduto, getProductById,getProdByCategory, VerDetalhesEdit, validateLogin }

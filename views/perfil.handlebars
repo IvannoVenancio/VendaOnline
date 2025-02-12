@@ -1,70 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Utilizador</title>
-    <link rel="stylesheet" href="/css's/perfil.css">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container"><header class="navbar">
-    <div class="header-inner-content">
-        <div class="logo">
-            <h1>Meu Perfil</h1>
-        </div>
-        <div class="nav">
-            <ul>
-                <li><a href="/">Início</a></li>
-                <li><a href="/perfil/{{user.id}}">Perfil</a></li>
-                <li><a href="/perfil/{{user.id}}/resumocompras">Resumo de Compras</a></li>
-            </ul>
-        </div>
-    </div>
-</header>
+    <div class="container light-style flex-grow-1 container-p-y">
+        <h4 class="font-weight-bold py-3 mb-4">Configurações de Conta</h4>
+        <form action="/perfil/{{user.id}}/update" method="POST" enctype="multipart/form-data">
+            <div class="card overflow-hidden">
+                <div class="row no-gutters row-bordered row-border-light">
+                    <div class="col-md-3 pt-0">
+                        <div class="list-group list-group-flush account-settings-links">
+                            <a class="list-group-item list-group-item-action active" data-toggle="list"
+                                href="#account-general">Geral</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                                href="#account-change-password">Alterar a senha</a>
+                            <a class="list-group-item list-group-item-action" data-toggle="list"
+                                href="#account-info">Informações</a>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="tab-content">
+                            <!-- Aba Geral -->
+                            <div class="tab-pane fade active show" id="account-general">
+                                <div class="card-body media align-items-center">
+                                    <img src="{{perfil.foto}}" alt="Avatar" class="rounded-circle"
+                                        style="width: 100px; height: 100px;"
+                                        onerror="this.onerror=null; this.src='/img/avatar-padrao.png';">
+                                    <div class="media-body ml-4">
+                                        <label class="btn btn-outline-primary">
+                                            Carregar nova foto
+                                            <input type="file" name="foto" class="account-settings-fileinput">
+                                        </label>
+                                        <button type="button" class="btn btn-default md-btn-flat">Repor</button>
+                                        <div class="text-light small mt-1">Permitidos: JPG, GIF ou PNG. Máximo 800KB.</div>
+                                    </div>
+                                </div>
+                                <hr class="border-light m-0">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label class="form-label">Nome de Utilizador</label>
+                                        <input type="text" class="form-control mb-1" name="nome_utilizador"
+                                            value="{{perfil.nome_utilizador}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Nome</label>
+                                        <input type="text" class="form-control" name="name" value="{{user.name}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">E-mail</label>
+                                        <input type="email" class="form-control mb-1" name="email" value="{{user.email}}">
+                                        <div class="alert alert-warning mt-3">
+                                            Seu e-mail não foi confirmado. Por favor, verifique sua caixa de entrada.<br>
+                                            <a href="javascript:void(0)"> Reenviar confirmação</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Aba Alterar Senha -->
+                            <div class="tab-pane fade" id="account-change-password">
+                                <div class="card-body pb-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Senha Atual</label>
+                                        <input type="password" class="form-control" name="senha_atual">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Nova Senha</label>
+                                        <input type="password" class="form-control" name="nova_senha">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Repita a Nova Senha</label>
+                                        <input type="password" class="form-control" name="confirmar_senha">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Aba Informações -->
+                            <div class="tab-pane fade" id="account-info">
+                                <div class="card-body pb-2">
+                                    <div class="form-group">
+                                        <label class="form-label">Data de Nascimento</label>
+                                        <input type="text" class="form-control" name="data_nascimento"
+                                            value="{{perfil.data_nascimento}}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">País</label>
+                                       <select class="custom-select" name="pais">
+                                        {{#each paises}}
+                                          <option value="{{this}}" {{#if (eq ../perfil.pais this)}}selected{{/if}}>
+                                            {{this}}
+                                          </option>
+                                                     {{/each}}
+                                                </select>
 
-
-        <main>
-            <div class="header-bottom-side">
-                <div class="header-bottom-side-left">
-                    <h2>Detalhes do Perfil</h2>
-                    <form action="/perfil/{{user.id}}" method="POST">
-                        <label for="name">Nome:</label>
-                        <input type="text" id="name" name="name" value="{{user.name}}" required>
-
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" value="{{user.email}}" required>
-
-                        <p>Tipo de Utilizador: <strong>{{tipo_usuario}}</strong></p>
-
-                        <button type="submit">Salvar Alterações</button>
-                    </form>
-                </div>
-                <div class="header-bottom-side-right">
-                    <button><a href="{{user.id}}/resumocompras">Ver Resumo de Compras</a></button>
+                                    </div>
+                                </div>
+                                <hr class="border-light m-0">
+                                <div class="card-body pb-2">
+                                    <h6 class="mb-4">Contato</h6>
+                                    <div class="form-group">
+                                        <label class="form-label">Telefone</label>
+                                        <input type="text" class="form-control" name="telefone"
+                                            value="{{perfil.telefone}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </main>
+            <div class="text-right mt-3">
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>&nbsp;
+                <button type="button" class="btn btn-default">Cancelar</button>
+            </div>
+        </form>
     </div>
-    <footer class="footer-content">
-    <div class="download-options">
-        <p>Baixe nosso app:</p>
-        <div>
-            <img src="app-store.png" alt="Baixar na App Store">
-            <img src="google-play.png" alt="Baixar na Google Play">
-        </div>
-    </div>
-    <div class="logo-footer">
-        <img src="logo-footer.png" alt="Logo">
-    </div>
-    <div class="links-footer">
-        <h3>Links Úteis</h3>
-        <ul>
-            <li><a href="#">Termos e Condições</a></li>
-            <li><a href="#">Privacidade</a></li>
-            <li><a href="#">Suporte</a></li>
-        </ul>
-    </div>
-</footer>
-
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

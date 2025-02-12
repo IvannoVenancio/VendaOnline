@@ -2,28 +2,57 @@ const express = require('express')
 const indexRoutes = express.Router()
 const UserController = require('../controllers/UserController')
 //const CadastroController = require('../controllers/ClienteController')
-//const LoginController = require('../controllers/UserController')
 const CarrinhoController = require('../controllers/CarrinhoController'); // Ajuste o caminho conforme a estrutura de pastas
 const HomeController = require ('../controllers/HomeController')
+const AuthController = require ('../controllers/AuthController')
+
 const ProdutoController = require ('../controllers/ProdutoController')
 const TipoUsuarioController = require ('../controllers/TipoUsuarioController')
 const CategoriaController = require ('../controllers/CategoriaController')
-const { upload } = require('../middleware/multer')
+const jwt = require('jsonwebtoken');
+
+
+const { upload } = require('../middleware/multer');
+const Authenticate = require('../middleware/authMiddleware')
 
 
 indexRoutes.get('/', UserController.home)
 
 
 
-indexRoutes.get('/carrinho', CarrinhoController.carrinho)
+//indexRoutes.get('/carrinho', CarrinhoController.carrinho)
+indexRoutes.get('/carrinho/:id_usuario', CarrinhoController.visualizarCarrinho);
 
-indexRoutes.get('/cadastro', UserController.view)
+
+// Rota para adicionar um produto ao carrinho
+indexRoutes.post('/carrinho/adicionar', CarrinhoController.adicionarProdutoAoCarrinho);
+
+// Rota para atualizar a quantidade de um produto no carrinho
+indexRoutes.post('/atualizar/:id_produto', CarrinhoController.atualizarProdutoNoCarrinho);
+
+// Rota para remover um produto do carrinho
+indexRoutes.delete('/remover/:id_produto', CarrinhoController.removerProdutoDoCarrinho);
+
+// Rota para finalizar a compra
+indexRoutes.post('/finalizar', CarrinhoController.finalizarCompra);
+
+
+//indexRoutes.get('/cadastro', UserController.view)
 indexRoutes.post('/create_user', UserController.create)
 
 // Rotas de usuário
+indexRoutes.get('/cadastro', UserController.cadastro)
 indexRoutes.post('/cadastro', UserController.create);
-indexRoutes.get('/login', UserController.login);
-indexRoutes.post('/login', UserController.login);
+//indexRoutes.get('/login', UserController.login);
+//indexRoutes.post('/login',verifyToken, UserController.authenticate);
+indexRoutes.get('/login', AuthController.login)
+
+indexRoutes.post('/login', AuthController.login);
+indexRoutes.get('/logout', AuthController.logout);
+indexRoutes.post('/login', AuthController.logout);
+indexRoutes.get('/paginainicial',Authenticate, UserController.paginainicial)
+indexRoutes.get('/paginaInicialAdm',Authenticate, UserController.paginainicialadm)
+
 
 // Rotas de usuários
 indexRoutes.get('/listaUsers', UserController.viewAllUsers); // Visualizar todos os usuários
@@ -31,15 +60,39 @@ indexRoutes.get('/listaUsers', UserController.viewAllUsers); // Visualizar todos
 // Atualizar utilizador
 indexRoutes.get('/users/:id/edit', UserController.editUserForm); // Formulário de edição
 indexRoutes.post('/users/:id/update', UserController.updateUser); // Atualizar utilizador
+//indexRoutes.post('/perfil/:id/update', UserController.updatePerfil); // Atualizar perfil
+// indexRoutes.get('/login', AuthController.login)
+indexRoutes.get('/login', AuthController.mostrarLogin); // Mostra a página de login
+//indexRoutes.post('/login', AuthController.login); // Processa os dados de login
+
+//indexRoutes.post('/validateLogin' ,UserController.validateLogin);
+
+
+
+//const { updatePerfil } = require('../controllers/UserController'); // Certifique-se de importar a função
+
+//indexRoutes.post('/perfil', updatePerfil);
+
 
 // Deletar utilizador
 indexRoutes.post('/users/:id/delete', UserController.deleteUser); // Deletar utilizador
 
 indexRoutes.get('/listaUsers',UserController.listaUsers)
 
+// const { getPerfil } = require('../controllers/UserController');
 
-indexRoutes.get('/perfil',UserController.perfil)
+// indexRoutes.get('/perfil', getPerfil);
+
 indexRoutes.get('/resumocompras',UserController.resumocompras)
+// Adicionar produto ao carrinho
+// indexRoutes.post('/add', CarrinhoController.addToCart);
+// indexRoutes.get('/cart', CarrinhoController.getCart);
+// Visualizar resumo de compras
+indexRoutes.post('/resumodecompras', UserController.getSummary);
+indexRoutes.get('/resumodecompras', UserController.getSummary);
+
+
+//indexRoutes.post('/logout', UserController.logout);
 
 
 
@@ -53,6 +106,10 @@ indexRoutes.post('/produtos/:id/update', ProdutoController.updateProduct);
 //indexRoutes.put('/produtos2/:id', ProdutoController.updateProduct);
 indexRoutes.get('/produtos/:id/editar', ProdutoController.showEditForm);
 indexRoutes.post('/produtos/:id/atualizar', upload.single('imagem'), ProdutoController.updateProduct);
+indexRoutes.get('/produtoAndCard/:tipoCategoriaId',ProdutoController.getProdByIdCategory)
+indexRoutes.get('/produtoAndCard', ProdutoController.produtoAndCard)
+indexRoutes.get('/produtos', ProdutoController.getMenu);
+
 
 // Rota para excluir o produto
 indexRoutes.post('/produtos/:id/deletar', ProdutoController.deleteProduct);
@@ -82,6 +139,7 @@ indexRoutes.put('/produto/:id', ProdutoController.updateProduct);
 // Rota de exclusão
 indexRoutes.delete('/produto/:id', ProdutoController.deleteProduct);
 
+indexRoutes.get('/atualizarProduto', ProdutoController.atualizarProduto)
 indexRoutes.post('/atualizarProduto', ProdutoController.atualizarProduto)
 
 indexRoutes.get('/detalhes',ProdutoController.detalhes)
@@ -104,9 +162,6 @@ indexRoutes.get('/categoria',ProdutoController.categoria)
 
 
 
-indexRoutes.get('/login', UserController.login)
-indexRoutes.post('/login', UserController.validateLogin)
-indexRoutes.post('/validateLogin', UserController.validateLogin);
 
 
 indexRoutes.get('/welcome', HomeController.welcome)
@@ -118,6 +173,20 @@ indexRoutes.get('/welcome', HomeController.welcome)
 //indexRoutes.post('/produtos', upload.single('imagem'), ProdutoController.createProduct);
 //indexRoutes.put('/produtos2/:id', upload.single('imagem'), ProdutoController.updateProduct);
 //indexRoutes.delete('/produtos2/:id', ProdutoController.deleteProduct);
+
+
+// routes/carrinhoRoutes.js
+indexRoutes.get('/carrinho', CarrinhoController.visualizarCarrinho);
+
+// indexRoutes.post('/cart/add', CarrinhoController.addToCart);
+// indexRoutes.get('/cart', CarrinhoController.listCartItems);
+
+// Aplica o middleware de autenticação
+// indexRoutes.get('/perfil', UserController. getPerfil);
+//indexRoutes.post('/perfil', authenticate,UserController, updatePerfil);
+indexRoutes.get('/perfil',Authenticate, UserController.perfil);
+
+
 
 
 

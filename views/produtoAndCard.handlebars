@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   <!-- font awesome cdn link  -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="/css's/produtoAndCard.css">
+
+   <!-- custom js file link  -->
+   <script src="/js/produtoAndCard.js" defer></script>
+
+</head>
+<body>
+   
+<div class="container">
+
+   <h3 class="title"> Produtos </h3>
+
+   <div class="products-container">
+      {{#each produtos}}
+      <div class="product" data-name="p-{{id}}">
+                    <img src="{{imagem}}"  alt="Imagem do {{nome_produto}}">
+         <h3>{{nome_produto}}</h3>
+         <div class="preco">{{preco}}</div>
+      </div>
+
+      
+
+      {{/each}}
+
+      <!-- <div class="product" data-name="p-2">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-3">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-4">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-5">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-6">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+   </div>-->
+
+</div>
+
+<div class="products-preview">
+   <!--Inicio da repetição da div de detalhes-->
+{{#each produtos}}
+   <div class="preview" data-target="p-{{id}}">
+      <i class="fas fa-times"></i>
+                    <img src="{{imagem}}"  alt="Imagem do {{nome_produto}}">
+      <h3>{{nome_produto}}</h3>
+            <div class="stars">
+         <i class="fas fa-star"></i>
+         <i class="fas fa-star"></i>
+         <i class="fas fa-star"></i>
+         <i class="fas fa-star"></i>
+         <i class="fas fa-star-half-alt"></i>
+         
+      </div>
+      
+      <p>EIM-STORE</p>
+      <div class="price">{{preco}}</div>
+      <div class="buttons">
+         <a action="/add" class="cart">Adicione ao Carrinho</a>
+      </div>
+   </div>
+{{/each}}
+<!--Final da repetição da div de detalhes-->
+</div>
+
+
+</body>
+</html>

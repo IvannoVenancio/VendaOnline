@@ -21,15 +21,16 @@
                     </div>
                     <div class="input-box">
 
-                        <label for="username">Nome</label>
-                        <input id="firstname" type="text" name="name" placeholder="Digite o seu Primeiro Nome" required>
+                        <label for="name">Nome</label>
+                        <input id="name" type="text" name="name" placeholder="Digite o seu Primeiro Nome" required>
                     </div>
+                        <select name="tipo_usuario" id="">
+                         <option value="">Tipo</option>
+                       {{#each tipo_usuario}}
+                       <option value="{{this.id}}">{{this.type}}</option>
+    {{/each}}
+                        </select>
 
-
-                      <div class="input-box">
-                        <label for="number">Tipo de Usuario</label>
-                        <input id="number" type="text" name="tipo_usuario" placeholder="Tipo de Usuario">
-                    </div>
 
                     <div class="input-box">
                         <label for="password">Senha</label>
