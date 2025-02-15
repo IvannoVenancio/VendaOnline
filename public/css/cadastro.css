@@ -61,12 +61,12 @@ width: 28rem;
     margin-top: 2rem; /* Ajuste para descer um pouco o título */
 }
 
-.login-button {
+.submit {
     display: flex;
     align-items:center;
 }
 
-.login-button button {
+.submit button {
     border: none;
     background-color: #0084ff;
     padding: 0.4rem 1rem;
@@ -74,11 +74,11 @@ width: 28rem;
     cursor: pointer;
 }
 
-.login-button button:hover {
+.submit button:hover {
     background-color: #0084ff;
 }
 
-.login-button button a {
+.submit button a {
     text-decoration: none;
     font-weight: 500;
     color: #fff;
@@ -122,6 +122,43 @@ width: 28rem;
     color: #000000c0;
 }
 
+/* Estilizar o select para parecer um input */
+select {
+    width: 48%;
+    height: 20%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #003366;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    
+    cursor: pointer;
+}
+
+/* Criar seta personalizada para o select */
+select::after {
+    content: "▼";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Efeito ao passar o mouse */
+select:hover {
+    border-color: #004c99;
+}
+
+/* Foco no select */
+select:focus {
+    outline: none;
+    border-color: #002244;
+    box-shadow: 0 0 5px rgba(0, 51, 102, 0.5);
+}
+
+
 .continue-button button {
     width: 25%;
     margin-top: 0rem;
@@ -141,6 +178,28 @@ width: 28rem;
     font-size: 0.93rem;
     font-weight: 500;
     color: #fff;
+    font-weight: bold;
+}
+
+.signup-button button {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-button button a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-button button:hover {
+    background-color: #0056b3; /* Azul mais escuro */
 }
 
 @media screen  and (max-width: 1330px) {

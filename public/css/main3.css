@@ -1,0 +1,99 @@
+/* Reset */
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* Corpo */
+body {
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: #2c2c2c;
+    padding: 2.5rem;
+    position: sticky;
+    top: 0;
+    box-shadow: 10px 0px 10px #2c2c2c;
+    z-index: 99;
+}
+
+.header-inner-content {
+    max-width: 1300px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+    color: #0084ff;
+}
+
+.logo span {
+    color: #fff;
+}
+
+/* Botões */
+.atalhos {
+    display: flex;
+    gap: 10px;
+}
+
+.atalhos button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.atalhos button:hover {
+    background-color: #0056b3;
+}
+
+/* Ícone do Menu */
+.menu-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-button {
+    width: 30px;
+}
+
+/* Menu Oculto */
+.menu-hidden {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    background: rgba(0, 123, 255, 0.9);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.menu-hidden.show {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu-hidden button {
+    background-color: white;
+    color: #007bff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu-hidden button:hover {
+    background-color: #e6e6e6;
+}

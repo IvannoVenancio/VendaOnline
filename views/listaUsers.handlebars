@@ -1,29 +1,40 @@
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{#each users}}
-    <tr>
-      <td>{{id}}</td>
-      <td>{{name}}</td>
-      <td>{{email}}</td>
-      <td>
-        <!-- Botão para editar -->
-        <a href="/users/{{this.id}}/edit" class="btn btn-primary">Editar</a>
-
-        <!-- Botão para deletar -->
-        <form action="/users/{{this.id}}/delete" method="POST" style="display:inline;">
-          <button type="submit" class="btn btn-danger">Deletar</button>
-        </form>
-      </td>
-    </tr>
-    {{/each}}
-  </tbody>
-</table>
-
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/listaUsers.css">
+    <title>Lista de Usuários</title>
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Gestão de Usuários - O melhor time está aqui! 🚀</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each users}}
+                <tr>
+                    <td>{{id}}</td>
+                    <td>{{name}}</td>
+                    <td>{{email}}</td>
+                    <td>
+                        <a href="/users/{{this.id}}/edit" class="btn btn-primary">Editar</a>
+                        <form action="/users/{{this.id}}/delete" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

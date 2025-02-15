@@ -9,7 +9,7 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
-   <link rel="stylesheet" href="/css's/produtoAndCard.css">
+   <link rel="stylesheet" href="/css/produtoAndCard.css">
 
    <!-- custom js file link  -->
    <script src="/js/produtoAndCard.js" defer></script>
@@ -33,37 +33,7 @@
 
       {{/each}}
 
-      <!-- <div class="product" data-name="p-2">
-         <img src="" alt="">
-         <h3>Nome do produto</h3>
-         <div class="price">preco</div>
-      </div>
-
-      <div class="product" data-name="p-3">
-         <img src="" alt="">
-         <h3>Nome do produto</h3>
-         <div class="price">preco</div>
-      </div>
-
-      <div class="product" data-name="p-4">
-         <img src="" alt="">
-         <h3>Nome do produto</h3>
-         <div class="price">preco</div>
-      </div>
-
-      <div class="product" data-name="p-5">
-         <img src="" alt="">
-         <h3>Nome do produto</h3>
-         <div class="price">preco</div>
-      </div>
-
-      <div class="product" data-name="p-6">
-         <img src="" alt="">
-         <h3>Nome do produto</h3>
-         <div class="price">preco</div>
-      </div>
-
-   </div>-->
+     
 
 </div>
 
@@ -84,15 +54,32 @@
       </div>
       
       <p>EIM-STORE</p>
-      <div class="price">{{preco}}</div>
+      <div class="price">{{preco}}kzs</div>
       <div class="buttons">
-         <a action="/add" class="cart">Adicione ao Carrinho</a>
+<form action="/adicionar" method="POST">
+    <input type="hidden" name="id_produto" value="{{this.id}}">
+    <input type="hidden" name="quantidade" value="1">
+    <button type="submit" class="cart">Adicionar ao Carrinho</button>
+</form>
       </div>
    </div>
 {{/each}}
 <!--Final da repetição da div de detalhes-->
 </div>
 
+
+<script>
+  async function adicionarProdutoAoCarrinho(id, quantidade) {
+    const response = await fetch('/carrinho/adicionar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_produto: id, quantidade })
+    });
+
+    const result = await response.json();
+    alert(result.message);
+  }
+</script>
 
 </body>
 </html>

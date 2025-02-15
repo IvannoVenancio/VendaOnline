@@ -8,63 +8,62 @@ const Categoria = prisma.tipoCategoria;
 const detalhes = prisma.detalhes;
 
 
-// const getAllProducts = async () => {
-//     const result = await Produto.findMany();
-//     return result;
-// };
-
-// const getProductById = async (id) => {
-//     const result = await Produto.findUnique({ where: { id } });
-//     return result;
-// };
-
-
-// Função para exibir o formulário de edição
-const editarProductForm = async (req, res) => {
+// // Função para exibir o formulário de edição
+// const editarProductForm = async (req, res) => {
   
-    const result = await Produto.findById(req.params.id,{
-      where: { id: parseInt(id) },
-      data: {
-        nome_produto,
-        descricao,
-        preco: parseFloat(preco),
-        quantidade: parseInt(quantidade),
-        categoriaId: parseInt(Categoria),
-      },
-      data,
+//     const result = await Produto.getProductById(req.params.id,{
+//       where: { id: parseInt(id) },
+//       data: {
+//         nome_produto,
+//         descricao,
+//         preco: parseFloat(preco),
+//         quantidade: parseInt(quantidade),
+//         categoriaId: parseInt(Categoria),
+//       },
+//       data,
 
-    })
-    return result;
+//     })
+//     return result;
+// };
+
+const editarProductForm = async (id) => {
+  const result = await Produto.findUnique({
+      where: { id: parseInt(id) } // Corrigido
+  });
+  return result;
 };
 
 
- const updateProduct = async (id, data) => {
-     const result = await Produto.update({
-         where: { id: parseInt(id)  },
-         data,
-     });
-     return result;
- };
+//  const updateProduct = async (id, data) => {
+//      const result = await Produto.update({
+//          where: { id: parseInt(id)  },
+//          data,
+//      });
+//      return result;
+//  };
 
- const deleteProduct = async (id) => {
-     const result = await Produto.delete({ where: { id: parseInt(id)  } });
-     return result;
+const updateProduct = async (id, data) => {
+  const result = await Produto.update({
+      where: { id: parseInt(id) },
+      data,
+  });
+  return result;
+};
+
+
+//  const deleteProduct = async (id) => {
+//      const result = await Produto.delete({ where: { id: parseInt(id)  } });
+//      return result;
      
- };
+//  };
 
-// // Exportando as funções
-// module.exports = {
-//     // Funções de Produto
-//     createProduct,
-//     getAllProducts,
-//     getProductById,
-//     updateProduct,
-//     deleteProduct,
-// };*/
+const deleteProduct = async (id) => {
+  const result = await Produto.delete({
+      where: { id: parseInt(id) }
+  });
+  return result;
+};
 
-// //const {PrismaClient} = require('@prisma/client')
-
-// //const Produto = prisma.produto
 
 const createProduct = async (data) => {
   try {

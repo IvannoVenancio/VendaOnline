@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *{
+            margin:0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+        section.pagamento{
+            display: flex;
+            max-width: 1100px;
+            justify-content: space-around;
+            padding: 0 2%;
+            flex-wrap: wrap;
+            margin: 90px auto;
+        }
+        .descricao-pagamento{
+            width: 40%;
+
+        }
+        .descricao-pagamento h3{
+            color: rgb(140, 140, 140);
+        }
+        .descricao-pagamento h2{
+         color: black; 
+         font-size: 50px;  
+        }
+        .form-pagamento{
+            -webkit-box-shadow: -8px 5px 15px 5px #c7c7c7;
+            box-shadow:-8px 5px 15px 5px #c7c7c7;
+            padding: 30px 30px 30px;
+            width: 50%;
+            /* width: 65%; */
+            /* padding-left: 80px; */
+        }
+        .form-pagamento{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .form-100{
+            width: 100%;
+            margin-bottom: 10px;
+            
+        }
+        .form-50{
+            width: 100%;
+            display: flex;
+            margin-bottom: 10px;
+        }
+        .form-pagamento label{
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color:rgb(140,140,140)
+        }
+        .form-pagamento input[type=text]{
+            padding-left: 10px;
+            width: 100%;
+            height: 40px;
+            border: 1px solid #ccc;
+        }
+        .form-pagamento input[type=submit]{
+            width: 100%;
+            height: 40px;
+            border:0;
+            cursor:pointer;
+            background-color: rgb(0,116,212);
+            color: white;
+        }
+        
+        @media screen and (max-width:750px){
+            .descricao-pagamento,
+            .form-pagamento{
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    <title>Pagamento</title>
+</head>
+<body>
+    <section class="pagamento">
+        <div class="descricao-pagamento">
+            <h3> Agradecemos por escolher a EIM-STORE para impulsionar o seu negocio!!!</h3>
+            <h2><span style='font-size:25px;'>&#128640;</span> ...</h2>
+        </div>
+        <div class="form-pagamento">
+            <form method="POST">
+                
+                <div class="form-100">
+                    <label>Nome:</label>
+                    <input type="text">
+                </div>
+                <div class="form-100">
+                    <label>Email:</label>
+                    <input type="text">
+                </div>
+                <div class="form-100">
+                    <label>Dados do cartão</label>
+                    <input type="text" placeholder="Número do cartão">
+                    <div class="form-50">
+                        <label>Data de validade:</label>
+                        <input style="margin-top: -1px;" type="date">
+                        <input style="margin-left: -1px;margin-top: -1px;" type="text" placeholder="Codigo de Validação">
+                    </div>
+                    <!-- <div class="form-100">
+                        <input type="text" placeholder="Nome do cartão">
+                    </div> -->
+                    <div class="form-100">
+
+                    </div>
+                    <div class="form-100">
+                        <input type="submit" name="acao" value="Pagar!" href="/pagamentoEfetuado">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section> <!-- Pagamento -->
+</body>
+</html>

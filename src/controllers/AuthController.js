@@ -4,22 +4,6 @@ exports.mostrarLogin = (req, res) => {
   res.render("login"); // Certifica-te de que tens um ficheiro login.handlebars
 };
 
-// exports.login = async (req, res) => {
-//     try {
-//         const { email, senha } = req.body;
-//         const result = await autenticacao.login(email, senha);
-
-//         if (result.error) {
-//         }
-
-//         console.log("Token recebido no controlador:", result.token); // Verifica se o token chegou!
-
-//         req.session.user = result.user;
-//         res.setHeader("Authorization", `Bearer ${result.token}`); // Envia o token no cabeçalho
-//         res.redirect('/dashboard');
-//     } catch (error) {
-//     }
-// };
 
 const { getUserByEmail } = require("../services/User");
 exports.login = async (req, res) => {
@@ -42,7 +26,7 @@ exports.login = async (req, res) => {
         console.log("Usuário antes de definir a sessão:", user);
 
         // ✅ Armazena o usuário na sessão
-        req.session.user = { id: user.id, email: user.email, tipo_usuario: user.tipo_usuario };
+        req.session.user = { id: user.id, email: user.email, tipo_usuario: user.tipo_usuario.type };
 
         console.log("Sessão antes de salvar:", req.session);
 

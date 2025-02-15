@@ -1,0 +1,19 @@
+<h2>Todos os Carrinhos</h2>
+<table>
+    <tr>
+        <th>ID do Carrinho</th>
+        <th>Usuário</th>
+        <th>Itens</th>
+    </tr>
+    {{#each carrinhos}}
+    <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.user.name}} ({{this.user.email}})</td>
+        <td>
+            {{#each this.itens}}
+                {{this.produtoNome}} ({{this.quantidade}}x) <br>
+            {{/each}}
+        </td>
+    </tr>
+    {{/each}}
+</table>

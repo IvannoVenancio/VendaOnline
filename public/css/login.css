@@ -175,6 +175,45 @@ font-weight: 500;
 color: #19187a;
 }
 
+.signup-button button {
+    background-color: #007bff; /* Azul */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-button button a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-button button:hover {
+    background-color: #0056b3; /* Azul mais escuro */
+}
+
+.submit button {
+    background-color: #007bff; /* Verde */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 30%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit button:hover {
+    background-color: #044488; /* Verde mais escuro */
+    transform: scale(1.05);
+}
+
 
 
 

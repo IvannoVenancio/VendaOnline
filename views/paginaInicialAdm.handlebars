@@ -1,23 +1,29 @@
-<h1>Pagina Inicial ADM</h1>
-
-            <li><a href="/logout"><button>SAIR</button></a></li>
-            <a href="/logout" class="btn btn-danger">Sair</a>
-            <a href="/listaUsers" class="btn btn-danger">Lista Users</a>
-            <a href="/produtoAndCard" class="btn btn-danger">Lista de Produtos</a>
-                        <a href="/atualizarProduto" class="btn btn-danger">Atualizar Produtos</a>
-            <a href="/atualizarUser" class="btn btn-danger">Atualizar Users</a>
-
-
-
-
-
-{{!-- Ir para lista de users
-
-ir para a lista de produtos
-
-Carrinho de users 
-
-resumo de pedidos
-
---}}
-
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Administrador</title>
+    <link rel="stylesheet" href="/css/pagInicialAdm.css">
+</head>
+<body>
+    <header>
+        {{!-- <button id="menu-toggle">☰ Menu</button> --}}
+        <h1>Bem-vindo, Administrador!</h1>
+    </header>
+    <nav id="menu" class="hidden">
+        <ul>
+            <li><a href="/">Ir para a Home</a></li>
+            <li><a href="/listaUsers">Usuários</a></li>
+            <li><a href="/logout">Sair</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <h2>Gestão Inteligente para um Negócio de Sucesso</h2>
+            <p>"O sucesso não é um destino, mas uma jornada de boas escolhas e inovação."</p>
+        </section>
+    </main>
+    
+</body>
+</html>

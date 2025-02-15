@@ -1,0 +1,19 @@
+<h2>Todos os Perfis</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Tipo</th>
+        <th>Data de Nascimento</th>
+    </tr>
+    {{#each perfis}}
+    <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.email}}</td>
+        <td>{{this.tipo_usuario}}</td>
+        <td>{{this.perfil.data_nascimento}}</td>
+    </tr>
+    {{/each}}
+</table>

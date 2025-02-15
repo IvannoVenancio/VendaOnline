@@ -4,35 +4,11 @@ const { createProduct, getAllProducts, getProdByCategory, getProductsByIdCategor
 exports.cadastroproduto = async(req, res)=>{
     try {
       
-        res.render('cadastroproduto', {layout:'cadastroLogin'})
+        res.render('cadastroproduto', {layout:"main3"})
     } catch (error) {
         console.log(error)
     }
 }
-
-
-/*
-exports.view = async(req, res) =>{
-    try {
-        const produto = await getAllProducts()
-        res.render('cadastroproduto', {produto})        
-    } catch (error) {
-        console.log("error:::", error)
-    }
-}
-exports.create = async(req, res) =>{
-    try {
-        const data = req.body
-        await createProduct(data)
-        res.redirect('/cadastroproduto')
-        
-    } catch (error) {
-        console.log("error:::", error)
-    }
-}
-
-const { createUser, findAllUsers,getUserById, deleteUser } = require("../services/User")*/
-
 
 exports.view = async(req, res) =>{
     try {
@@ -151,15 +127,33 @@ exports.detalhesEditar = async(req, res)=>{
 
 
 
-// Mostrar formulário de edição
+// // Mostrar formulário de edição
+// exports.showEditForm = async (req, res) => {
+//   try {
+//       const { id } = req.params;
+//       const produto = await getProductById(id); // Busca o produto pelo ID
+
+//       if (!produto) {
+//           return res.status(404).send("Produto não encontrado.");
+//       }
+
+//       res.render('atualizarProduto', { produto });
+//   } catch (error) {
+//       console.error("Erro ao carregar formulário de edição:", error);
+//       res.status(500).send("Erro ao carregar formulário de edição.");
+//   }
+// };
+
 exports.showEditForm = async (req, res) => {
   try {
       const { id } = req.params;
-      const produto = await getProductById(id); // Busca o produto pelo ID
-      const { tipoCategoriaId } = req.body;
+      const produto = await editarProductForm(id); // Corrigido
 
+      if (!produto) {
+          return res.status(404).send("Produto não encontrado.");
+      }
 
-      res.render('atualizarProduto', { produto, tipoCategoriaId });
+      res.render('atualizarProduto', { produto, layout:"cadastroLogin" });
   } catch (error) {
       console.error("Erro ao carregar formulário de edição:", error);
       res.status(500).send("Erro ao carregar formulário de edição.");
@@ -168,37 +162,39 @@ exports.showEditForm = async (req, res) => {
 
 
 
+
 // Atualizar produto
 exports.updateProduct = async (req, res) => {
   try {
+      const { id } = req.params;
+      console.log("ID recebido:", id); // 🔍 Verifica se o ID está correto
 
-    const { id } = req.params;
-    const { nome_produto, preco, descricao, quantidade, detalhes, tipoCategoriaId } = req.body;
-    //const imagePath = req.file ? `/img/${req.file.filename}` : null;
+      const { nome_produto, preco, descricao, quantidade, detalhes, tipoCategoriaId } = req.body;
 
-    // Converter preço e quantidade para números
-    const precoFloat = parseFloat(preco); // Converte para Float
-    const quantidadeInt = parseInt(quantidade, 10); // Converte para inteiro
+      const precoFloat = parseFloat(preco);
+      const quantidadeInt = parseInt(quantidade, 10);
 
-    if (isNaN(precoFloat) || isNaN(quantidadeInt)) {
-      return res.status(400).send("Preço ou quantidade inválidos.");
-    }
+      if (isNaN(precoFloat) || isNaN(quantidadeInt)) {
+          return res.status(400).send("Preço ou quantidade inválidos.");
+      }
 
-    await updateProduct(id, {
-        nome_produto,
-        preco: precoFloat,
-        descricao,
-        quantidade: quantidadeInt,
-        detalhes,
-        tipoCategoriaId,
-        //imagem: imagePath,
-    });
-    res.redirect('/produtos');
+      await updateProduct(id, {
+          nome_produto,
+          preco: precoFloat,
+          descricao,
+          quantidade: quantidadeInt,
+          detalhes,
+          tipoCategoriaId,
+      });
+
+      res.redirect('/categoria');
   } catch (error) {
-    console.error("Erro ao atualizar produto:", error);
-    res.status(500).send("Erro ao atualizar produto.");
+      console.error("Erro ao atualizar produto:", error);
+      res.status(500).send("Erro ao atualizar produto.");
   }
 };
+
+
 
 
 // Deletar produto
@@ -206,20 +202,12 @@ exports.deleteProduct = async (req, res) => {
   try {
       const { id } = req.params;
       await deleteProduct(id); // Deleta o produto pelo ID
-      res.redirect('/produtos');
+      res.redirect('/categoria');
   } catch (error) {
       console.error("Erro ao deletar produto:", error);
       res.status(500).send("Erro ao deletar produto.");
   }
 };
-
-
-
-
-
-
-
-
 
  
 exports.getProdByCategory = async(req, res) =>{
@@ -282,14 +270,6 @@ exports.produtoAndCard = async(req, res)=>{
       console.log(error)
   }
 }
-
-
-
-
-
-
-//const { createProduct, getAllProducts} = require("../services/Produto")
-
 
 
 exports.categoria = async(req, res)=>{
@@ -356,7 +336,7 @@ const mostrarFormularioEdicao = async (req, res) => {
          },
       });
   
-      res.redirect('/produtos', {produto, produtos}); // Redireciona para a lista de produtos
+      res.redirect('/categoria', {produto, produtos}); // Redireciona para a lista de produtos
     } catch (error) {
       console.error(error);
       res.status(500).send('Erro ao atualizar o produto.');

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
@@ -42,4 +42,38 @@
         </main>
     </div>
 </body>
-</html>
+</html> --}}
+
+<h2>Resumo das Compras</h2>
+
+{{#if resumo.length}}
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Quantidade</th>
+                <th>Valor Unitário</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Data da Compra</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each resumo}}
+                <tr>
+                    <td>{{this.produto.nome}}</td>
+                    <td>{{this.quantidade}}</td>
+                    <td>{{this.valor_unitario}}</td>
+                    <td>{{this.total}}</td>
+                    <td>{{this.status_entrega}}</td>
+                    <td>{{this.data_compra}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>Você ainda não realizou compras.</p>
+{{/if}}
+
+<!-- Botão para voltar à página inicial -->
+<a href="/" class="btn-voltar">Voltar</a>
