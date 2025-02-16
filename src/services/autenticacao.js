@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
@@ -34,3 +35,27 @@ const login = async (email, senha) => {
 
 module.exports = { login };
 
+=======
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
+
+// Lógica de autenticação
+const login = async(email, senha)=>{
+    const user = await prisma.user.findUnique({ where: { email, senha } });
+  
+    if (!user || user.senha !== senha) {
+      return { success: false, data: null, message: 'Credenciais inválidas' };
+    }
+  
+    return { success: true, data: { userId: user.id }, message: 'Login bem-sucedido' };
+  }
+  
+  // Lógica de logout (simplificada)
+  const logout = async() =>{
+    return { success: true, message: 'Logout bem-sucedido' };
+  }
+  
+  // Exportação das funções
+ 
+  module.exports = { login,logout };
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

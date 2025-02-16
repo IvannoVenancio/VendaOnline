@@ -1,6 +1,9 @@
 const express = require ('express');
 const bodyParser = require ('body-parser')
 const {engine} = require ('express-handlebars')
+process.env.JWT_SECRET = 'VendaOnline';
+const jwt = require('jsonwebtoken');
+
 
 const jwt = require('jsonwebtoken');
 const session = require('express-session')

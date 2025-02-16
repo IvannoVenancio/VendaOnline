@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho</title>
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/carrinho.css">
+=======
+    <link rel="stylesheet" href="/css's/carrinho.css">
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 </head>
 <body>
     <header>EIMSTORE</header>
@@ -27,6 +31,7 @@
                     <tbody>
                         {{#each carrinho}}
                         <tr>
+<<<<<<< HEAD
                             <td>
 <img src="{{this.imagem}}" alt="{{this.nome_produto}}" width="100">
 </td>
@@ -66,12 +71,23 @@
 
 </td>
 
+=======
+                            <td>{{this.produto.nome_produto}}</td>
+                            <td>{{this.produto.preco}}</td>
+                            <td>{{this.quantidade}}</td>
+                            <td>{{this.total}}</td>
+                            <td><button class="remove">X</button></td>
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
                         </tr>
                         {{/each}}
                     </tbody>
                 </table>
                 {{else}}
+<<<<<<< HEAD
                 <p>O carrinho está vazio.</p>
+=======
+                <p>{{mensagem}}</p>
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
                 {{/if}}
             </section>
             <aside>
@@ -87,12 +103,16 @@
                         <span>{{total}} KZ</span>
                     </footer>
                 </div>
+<<<<<<< HEAD
 <form action="/carrinho/finalizar" method="POST">
     <button type="submit">Finalizar Compra</button>
 </form>
 
 
 
+=======
+                <button class="resumo-button">Finalizar Compra</button>
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
             </aside>
         </div>
     </main>
@@ -100,4 +120,7 @@
     <script src="/js/carrinho.js"></script>
 </body>
 </html>
+<<<<<<< HEAD
  
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

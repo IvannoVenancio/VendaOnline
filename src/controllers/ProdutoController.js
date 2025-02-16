@@ -169,7 +169,8 @@ exports.updateProduct = async (req, res) => {
       const { id } = req.params;
       console.log("ID recebido:", id); // 🔍 Verifica se o ID está correto
 
-      const { nome_produto, preco, descricao, quantidade, detalhes, tipoCategoriaId } = req.body;
+    const { nome_produto, preco, descricao, quantidade, detalhes, tipoCategoriaId } = req.body;
+    //const imagePath = req.file ? `/img/${req.file.filename}` : null;
 
       const precoFloat = parseFloat(preco);
       const quantidadeInt = parseInt(quantidade, 10);
@@ -188,6 +189,17 @@ exports.updateProduct = async (req, res) => {
       });
 
       res.redirect('/categoria');
+
+    await updateProduct(id, {
+        nome_produto,
+        preco: precoFloat,
+        descricao,
+        quantidade: quantidadeInt,
+        detalhes,
+        tipoCategoriaId,
+        //imagem: imagePath,
+    });
+    res.redirect('/produtos');
   } catch (error) {
       console.error("Erro ao atualizar produto:", error);
       res.status(500).send("Erro ao atualizar produto.");
@@ -259,6 +271,19 @@ exports.getProdByIdCategory = async (req, res) => {
     res.status(500).send('Erro ao obter produtos. Tente novamente mais tarde.');
   }
 };
+
+
+
+exports.produtoAndCard = async(req, res)=>{
+  try {
+      const produto = await getAllProducts()
+
+      res.render('produtoAndCard', {layout:'produtos', produto})
+  } catch (error) {
+      console.log(error)
+  }
+}
+
 
 
 exports.produtoAndCard = async(req, res)=>{

@@ -36,6 +36,7 @@ const validateLogin = async (email, senha) => {
           where: { email },
       });
 
+<<<<<<< HEAD
       if (!user) {
           result.message = "Usuário ou senha inválidos.";
           return result;
@@ -43,6 +44,9 @@ const validateLogin = async (email, senha) => {
 
       // Comparação direta da senha (NÃO SEGURO para produção)
       if (user.senha !== senha) {
+=======
+      if (!user || user.senha !== senha) {
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
           result.message = "Usuário ou senha inválidos.";
           return result;
       }
@@ -51,9 +55,16 @@ const validateLogin = async (email, senha) => {
       result.data = user;
       result.message = "Login bem-sucedido.";
       return result;
+<<<<<<< HEAD
 
   } catch (error) {
       console.error("Erro ao validar login:", error);
+      result.message = `Erro ao validar login: ${error.message}`;
+      return result;
+  }
+};
+=======
+  } catch (error) {
       result.message = `Erro ao validar login: ${error.message}`;
       return result;
   }
@@ -112,6 +123,164 @@ const viewAllUsers = async () => {
   }
 };
 
+// // Função para obter o perfil de um usuário
+// const getPerfilByUserId = async (userId) => {
+//   try {
+//       // Buscando o usuário no banco de dados com base no userId
+//       const perfil = await prisma.user.findUnique({
+//         where: { id: userId },
+//         include: { perfil: true },
+//       });
+  
+//       if (!perfil) {
+//         return { success: false, message: 'Perfil não encontrado' };
+//       }
+  
+//       return { success: true, data: perfil };
+//     } catch (error) {
+//       console.error('Erro ao buscar perfil:', error);
+//       return { success: false, message: 'Erro ao buscar perfil' };
+//     }
+//   }
+
+
+// // Função para atualizar o perfil de um usuário
+// const updatePerfil = async (userId, perfilData) => {
+//   try {
+//     const perfilExistente = await prisma.perfil.findUnique({
+//       where: { id: userId },
+//     });
+
+//     if (!perfilExistente) {
+//       return { success: false, message: 'Perfil não encontrado para atualização.' };
+//     }
+
+//     const perfilAtualizado = await prisma.perfil.update({
+//       where: { id: userId },
+//       data: {
+//         nome_utilizador: perfilData.nome_utilizador || perfilExistente.nome_utilizador,
+//         descricao: perfilData.descricao || perfilExistente.descricao,
+//         updated_at: new Date(),
+//       },
+//     });
+
+//     return { success: true, data: perfilAtualizado };
+//   } catch (error) {
+//     console.error('Erro ao atualizar o perfil:', error);
+//     return { success: false, message: 'Erro ao atualizar o perfil.' };
+//   }
+// };
+
+
+// // Serviço para obter o perfil de um usuário
+// async function getPerfilByUserId(userId) {
+//   try {
+//     const perfil = await prisma.perfil.findUnique({
+//       where: {
+//         id: userId,
+//       },
+//       include: {
+//         perfil_usuario: true, // Relacionamento com o modelo User
+//       },
+//     });
+
+//     if (!perfil) {
+//       return { success: false, message: 'Perfil não encontrado.' };
+//     }
+
+//     return { success: true, data: perfil };
+//   } catch (error) {
+//     console.error('Erro ao buscar o perfil:', error);
+//     return { success: false, message: 'Erro ao buscar o perfil.' };
+//   }
+// }
+
+// // Serviço para atualizar o perfil de um usuário
+//  const updatePerfil = async(userId, perfilData)=> {
+//   try {
+//     const perfilExistente = await prisma.perfil.findUnique({
+//       where: {
+//         id: userId,
+//       },
+//     });
+
+//     if (!perfilExistente) {
+//       return { success: false, message: 'Perfil não encontrado para atualização.' };
+//     }
+
+//     const perfilAtualizado = await prisma.perfil.update({
+//       where: {
+//         id: userId,
+//       },
+//       data: {
+//         nome_utilizador: perfilData.nome_utilizador || perfilExistente.nome_utilizador,
+//         descricao: perfilData.descricao || perfilExistente.descricao,
+//         updated_at: new Date(),
+//       },
+//     });
+
+//     return { success: true, data: perfilAtualizado };
+//   } catch (error) {
+//     console.error('Erro ao atualizar o perfil:', error);
+//     return { success: false, message: 'Erro ao atualizar o perfil.' };
+//   }
+// }
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+
+
+
+// Função para buscar o usuário pelo ID
+const getUserById = async (id) => {
+  try {
+    const result = await prisma.user.findUnique({
+      where: { id: parseInt(id) },
+    });
+    return result;
+  } catch (error) {
+    console.error('Erro ao buscar usuário por ID:', error);
+    throw error;
+  }
+};
+
+<<<<<<< HEAD
+// Função para atualizar o usuário
+const updateUser = async (id, data) => {
+  try {
+    const result = await prisma.user.update({
+      where: { id: parseInt(id) },
+      data,
+    });
+    return result;
+  } catch (error) {
+    console.error('Erro ao atualizar o usuário:', error);
+    throw error;
+  }
+};
+
+// Função para excluir um usuário
+const deleteUser = async (id) => {
+  try {
+    const result = await prisma.user.delete({
+      where: { id: parseInt(id) },
+    });
+    return result;
+  } catch (error) {
+    console.error('Erro ao deletar usuário:', error);
+    throw error;
+  }
+};
+
+// Função para buscar todos os perfis dos usuários
+const viewAllUsers = async () => {
+  try {
+    const users = await prisma.user.findMany();
+    return users;
+  } catch (error) {
+    console.error('Erro ao buscar todos os usuários:', error);
+    throw error;
+  }
+};
+
 // Função para buscar o usuário pelo ID
 const getUserByEmail = async (email) => {
   try {
@@ -125,6 +294,8 @@ const getUserByEmail = async (email) => {
   }
 };
 
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 module.exports = {
   createUser,
   findAllUsers,
@@ -133,5 +304,8 @@ module.exports = {
   updateUser,
   deleteUser,
   viewAllUsers,
+<<<<<<< HEAD
   getUserByEmail
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 };

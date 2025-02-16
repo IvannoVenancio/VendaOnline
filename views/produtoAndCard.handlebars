@@ -9,7 +9,11 @@
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
    <!-- custom css file link  -->
+<<<<<<< HEAD
    <link rel="stylesheet" href="/css/produtoAndCard.css">
+=======
+   <link rel="stylesheet" href="/css's/produtoAndCard.css">
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
    <!-- custom js file link  -->
    <script src="/js/produtoAndCard.js" defer></script>
@@ -33,7 +37,41 @@
 
       {{/each}}
 
+<<<<<<< HEAD
      
+=======
+      <!-- <div class="product" data-name="p-2">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-3">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-4">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-5">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+      <div class="product" data-name="p-6">
+         <img src="" alt="">
+         <h3>Nome do produto</h3>
+         <div class="price">preco</div>
+      </div>
+
+   </div>-->
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 </div>
 
@@ -54,6 +92,7 @@
       </div>
       
       <p>EIM-STORE</p>
+<<<<<<< HEAD
       <div class="price">{{preco}}kzs</div>
       <div class="buttons">
 <form action="/adicionar" method="POST">
@@ -61,6 +100,11 @@
     <input type="hidden" name="quantidade" value="1">
     <button type="submit" class="cart">Adicionar ao Carrinho</button>
 </form>
+=======
+      <div class="price">{{preco}}</div>
+      <div class="buttons">
+         <a action="/add" class="cart">Adicione ao Carrinho</a>
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
       </div>
    </div>
 {{/each}}
@@ -68,6 +112,7 @@
 </div>
 
 
+<<<<<<< HEAD
 <script>
   async function adicionarProdutoAoCarrinho(id, quantidade) {
     const response = await fetch('/carrinho/adicionar', {
@@ -81,5 +126,7 @@
   }
 </script>
 
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 </body>
 </html>

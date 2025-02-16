@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const session = require('express-session');
 
 const Authenticate = (req, res, next) => {
@@ -27,3 +28,22 @@ const isAdmin = (req, res, next) => {
 
 module.exports = { Authenticate, isAdmin };
 
+=======
+const jwt = require('jsonwebtoken');
+
+const authenticate = (req, res, next) => {
+  const token = req.cookies.token;  // ou req.header('Authorization')
+
+  if (!token) {
+    return res.status(401).send('Acesso não autorizado');
+  }
+
+  try {
+    const decoded = jwt.verify(token, 'VendaOnline');  // Verifique se a chave secreta está correta
+    req.user = decoded;  // Atribui o usuário decodificado ao req.user
+    next();
+  } catch (error) {
+    return res.status(401).send('Token inválido');
+  }
+};
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
