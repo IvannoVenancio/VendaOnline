@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 // function toggleCategoriaBox() {
 //     const categoriaBox = document.getElementById('categoria-box');
 //     if (categoriaBox.style.display === 'block') {
@@ -15,6 +18,9 @@
 //     window.location.href = `/produtos?categoria=${encodeURIComponent(tipoCategoriaId)}`;
 //   }
   
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 function toggleDropdown() {

@@ -12,6 +12,7 @@ model User {
   email           String        @unique @db.VarChar(100)
   name            String
 <<<<<<< HEAD
+<<<<<<< HEAD
   senha           String        @db.VarChar(100)
   tipo_usuario    Int
   tipo_usuario_rel TipoUsuario  @relation("user_tipo_usuario", fields: [tipo_usuario], references: [id])
@@ -23,6 +24,8 @@ model User {
   created_at      DateTime      @default(now())
   updated_at      DateTime      @updatedAt
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
   tipo_usuario    String
   senha           String        @db.VarChar(100)
   tipo_usuario_rel TipoUsuario  @relation("user_tipo_usuario", fields: [tipo_usuario], references: [type])
@@ -35,6 +38,9 @@ model User {
   pedidos         Pedido[]      // Relacionamento com Pedido
   created_at      DateTime      @default(now())
   updated_at      DateTime      @updatedAt @default(now())
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
   @@map("user")
@@ -44,6 +50,7 @@ model Perfil {
   id              Int      @id @default(autoincrement())
   nome_utilizador String?
   descricao       String?
+<<<<<<< HEAD
 <<<<<<< HEAD
   imagem          String?   @db.VarChar(1500) // Foto de perfil
   data_nascimento DateTime? // Data de nascimento do usuário
@@ -58,6 +65,11 @@ model Perfil {
   created_at      DateTime @default(now())
   updated_at      DateTime @updatedAt @default(now())
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
+  perfil_usuario  User[]   // Relacionamento com usuários
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt @default(now())
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
   @@map("perfil")
 }
@@ -67,7 +79,11 @@ model TipoUsuario {
   id         Int      @id @default(autoincrement())
   type       String   @db.VarChar(30) @unique
 <<<<<<< HEAD
+<<<<<<< HEAD
   users      User[]   @relation("user_tipo_usuario")
+=======
+  users      User[]   @relation("user_tipo_usuario") // Relacionamento de volta para User
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
   users      User[]   @relation("user_tipo_usuario") // Relacionamento de volta para User
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
@@ -82,9 +98,15 @@ model TipoCategoria {
   tipo_categoria String    @db.VarChar(30) @unique
   imagem         String?   @db.VarChar(255)
 <<<<<<< HEAD
+<<<<<<< HEAD
   produtos       Produto[] @relation("Produtos_TipoCategoria")
   created_at     DateTime  @default(now()) @db.Timestamp(6)
   updated_at     DateTime  @updatedAt
+=======
+  produtos       Produto[] @relation("Produtos_TipoCategoria") // Relacionamento com Produto
+  created_at     DateTime  @default(now()) @db.Timestamp(6)
+  updated_at     DateTime  @updatedAt @default(now())
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
   produtos       Produto[] @relation("Produtos_TipoCategoria") // Relacionamento com Produto
   created_at     DateTime  @default(now()) @db.Timestamp(6)
@@ -105,13 +127,19 @@ model Produto {
   detalhes         String        @db.VarChar(1500)
   imagem           String?       @db.VarChar(1500)
 <<<<<<< HEAD
+<<<<<<< HEAD
   carrinho         Carrinho[]    
   resumoCompras    ResumoCompra[]
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
   resumoCompras    ResumoCompra[] // Relacionamento com ResumoCompra
   avaliacoes       Avaliacao[]   // Relacionamento com Avaliação
   carrinho         Carrinho[]    // Relacionamento com Carrinho
   itens            Item[]        // Relacionamento com Item (de volta)
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
   created_at       DateTime      @default(now())
   updated_at       DateTime      @updatedAt
@@ -119,6 +147,7 @@ model Produto {
   @@map("produto")
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 model Carrinho {
   id               Int      @id @default(autoincrement())
@@ -133,6 +162,8 @@ model Carrinho {
   created_at       DateTime @default(now())
   updated_at       DateTime @updatedAt
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 model Item {
   id             Int      @id @default(autoincrement())
   id_produto     Int
@@ -175,6 +206,9 @@ model Pagamento {
   status_pagamento String
   created_at       DateTime  @default(now())
   updated_at       DateTime  @updatedAt
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
   @@map("carrinho")
@@ -201,7 +235,11 @@ model Endereco {
   id         Int      @id @default(autoincrement())
   id_usuario Int
 <<<<<<< HEAD
+<<<<<<< HEAD
   user       User     @relation(fields: [id_usuario], references: [id])
+=======
+  user       User     @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
   user       User     @relation(fields: [id_usuario], references: [id]) // Relacionamento com User
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
@@ -265,4 +303,7 @@ model ResumoCompra {
 
   @@map("resumo_compra")
 }
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

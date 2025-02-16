@@ -4,10 +4,13 @@ const {engine} = require ('express-handlebars')
 process.env.JWT_SECRET = 'VendaOnline';
 const jwt = require('jsonwebtoken');
 
+<<<<<<< HEAD
 
 const jwt = require('jsonwebtoken');
 const session = require('express-session')
 const adminRoutes = require("./src/routes/admin"); 
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 const indexRoutes = require('./src/routes/index');
 const path = require('path');

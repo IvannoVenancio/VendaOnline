@@ -1,4 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+// const { carrinho } = require("../controllers/CarrinhoController");
+// const { produtos } = require("../controllers/ProdutoController");
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
 // const { carrinho } = require("../controllers/CarrinhoController");
 // const { produtos } = require("../controllers/ProdutoController");
@@ -8,6 +13,7 @@ const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const adicionarProdutoAoCarrinho = async (id_usuario, id_produto) => {
     const produtoId = Number(id_produto);
@@ -73,6 +79,8 @@ const removerProdutoDoCarrinho = async (id) => {
         where: { id: Number(id) }
     });
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 
 
@@ -347,11 +355,15 @@ async function adicionarProdutoAoCarrinho(userId, id_produto, quantidade) {
   }
 
   return result;
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 }
 
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -471,6 +483,8 @@ module.exports = {
 
 
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 // Exportação das funções
 module.exports = {
     getCart,
@@ -480,4 +494,7 @@ module.exports = {
     removerProdutoDoCarrinho,
     finalizarCompra,
 };
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

@@ -26,7 +26,11 @@
   "license": "ISC",
   "devDependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@prisma/client": "^6.3.1",
+=======
+    "@prisma/client": "^6.2.1",
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
     "@prisma/client": "^6.2.1",
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

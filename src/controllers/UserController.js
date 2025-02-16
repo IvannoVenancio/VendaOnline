@@ -94,11 +94,15 @@ exports.create = async(req, res) =>{
 //           console.log(error)
 //       }
 //   }
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 // Exibe a página de cadastro
 exports.cadastro = async (req, res) => {
     try {
+<<<<<<< HEAD
 <<<<<<< HEAD
       const tipo_usuario = await findAllUserTypes()
         res.render('cadastro', {tipo_usuario, layout:"cadastroLogin" });
@@ -190,6 +194,89 @@ exports.perfil = async (req, res) => {
         res.render('login', { message: 'Erro ao validar login' });
     }
 };
+=======
+        const { email, senha } = req.body; // Dados do formulário
+
+        // Chama a função validateLogin do serviço
+        const result = await validateLogin(email, senha);
+
+        if (!result.success) {
+            // Caso falhe, envia a mensagem de erro para a página de login
+            res.render('login', { message: result.message || 'Login falhou' });
+        } else {
+            // Caso seja bem-sucedido, redireciona para a página principal ou de usuário autenticado
+            res.cookie('userId', result.data.id, { httpOnly: true, path: '/' });
+            res.redirect('/'); // Redirecionamento após login bem-sucedido
+        }
+    } catch (error) {
+        console.error("Erro ao validar login:", error);
+        res.render('login', { message: 'Erro ao validar login' });
+    }
+};
+
+
+
+exports.perfil = async (req, res) => {
+    try {
+        res.render('perfil');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Erro ao carregar o perfil');
+    }
+};
+
+
+//    Função para obter perfil de um usuário
+//    controllers/PerfilController.js
+//   exports.getPerfil = async (req, res) => {
+//       try {
+//         if (!req.user) {
+//           return res.status(401).send('Usuário não autenticado');
+//         }
+  
+//         const user = await prisma.user.findUnique({
+//           where: { id: req.user.id },
+//         });
+  
+//         if (!user) {
+//           return res.status(404).send('Usuário não encontrado');
+//         }
+  
+//         res.json(user);
+//       } catch (error) {
+//         console.error('Erro ao obter perfil:', error);
+//         res.status(500).send('Erro ao obter perfil');
+//       }
+//     };
+  
+  
+  
+
+// // // Função para atualizar o perfil do usuário
+// // exports.updatePerfil = async (req, res) => {
+// //     try {
+// //       const userId = req.user.id; // Aqui você acessa o ID do usuário autenticado via token
+// //       const { nome, email } = req.body; // Supondo que você tenha esses dados no corpo da requisição
+  
+// //       // Atualizando o perfil do usuário no banco de dados
+// //       const updatedUser = await prisma.user.update({
+// //         where: { id: userId },
+// //         data: { nome, email },
+// //       });
+  
+// //       res.status(200).json({ message: 'Perfil atualizado com sucesso', updatedUser });
+// //     } catch (error) {
+// //       console.error('Erro ao atualizar perfil:', error);
+// //       res.status(500).send('Erro ao atualizar perfil');
+// //     }
+// //   };
+  
+  
+
+
+
+
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 
 
@@ -491,7 +578,10 @@ exports.login = async (req, res) => {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 // Controlador de logout
 exports.logout = async (req, res) => {
     const result = logout();
@@ -548,5 +638,8 @@ exports.finalizarCompra = async (req, res) => {
 const{finalizarCompra, getSummary} = require ("../services/resumocompras");
 const { createUser, findAllUsers,getUserById, deleteUser, viewAllUsers, updateUser, getPerfilByUserId, updatePerfil,validateLogin } = require("../services/User")
 const {login, logout} = require ("../services/autenticacao")
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 

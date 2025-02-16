@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // // services/comprasService.js
 // const { PrismaClient } = require('@prisma/client');
 // const prisma = new PrismaClient();
@@ -47,6 +48,8 @@
 //   finalizarCompra,
 // };
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 // services/comprasService.js
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
@@ -94,4 +97,7 @@ const finalizarCompra = async(id_usuario)=>{
 module.exports = {
   finalizarCompra,
 };
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

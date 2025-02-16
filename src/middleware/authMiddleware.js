@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const session = require('express-session');
 
 const Authenticate = (req, res, next) => {
@@ -29,6 +30,8 @@ const isAdmin = (req, res, next) => {
 module.exports = { Authenticate, isAdmin };
 
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 const jwt = require('jsonwebtoken');
 
 const authenticate = (req, res, next) => {
@@ -46,4 +49,7 @@ const authenticate = (req, res, next) => {
     return res.status(401).send('Token inválido');
   }
 };
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

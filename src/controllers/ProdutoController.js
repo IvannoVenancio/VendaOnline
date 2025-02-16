@@ -273,6 +273,18 @@ exports.getProdByIdCategory = async (req, res) => {
 };
 
 
+exports.produtoAndCard = async(req, res)=>{
+  try {
+      const produto = await getAllProducts()
+
+      res.render('produtoAndCard', {layout:'produtos', produto})
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+
+
 
 exports.produtoAndCard = async(req, res)=>{
   try {

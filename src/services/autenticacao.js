@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 const jwt = require('jsonwebtoken');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
@@ -36,6 +37,8 @@ const login = async (email, senha) => {
 module.exports = { login };
 
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
@@ -57,5 +60,9 @@ const login = async(email, senha)=>{
   
   // Exportação das funções
  
+<<<<<<< HEAD
+  module.exports = { login,logout };
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
   module.exports = { login,logout };
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7

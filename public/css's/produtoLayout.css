@@ -1,0 +1,161 @@
+/* Estilos para a navegação */
+nav.menu-bar {
+    position: fixed; /* Fixa a barra de navegação no topo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #33373b; /* Cor de fundo escura */
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+  }
+  
+  nav.menu-bar .logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: blue; /* Azul para "EIM" */
+    text-transform: uppercase;
+  }
+  
+  nav.menu-bar .logo span {
+    color: white; /* Branco para "STORE" */
+  }
+
+  nav.menu-bar .logo .eim {
+    color: blue; /* Azul para "EIM" */
+    font-weight: bold;
+  }
+  
+  nav.menu-bar .logo .store {
+    color: white; /* Branco para "STORE" */
+    font-weight: bold;
+  }
+  
+  
+  nav.menu-bar .menu-buttons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 20px;
+    margin-top: -40px; /* Ajuste para não sobrepor o conteúdo */
+  }
+  
+  nav.menu-bar .menu-buttons a,
+  nav.menu-bar .menu-buttons .dropdown {
+    margin-left: 15px; /* Espaçamento entre os botões */
+  }
+  
+  nav.menu-bar .menu-buttons a {
+    color: white;
+    text-decoration: none;
+    background-color: #2a20f6; /* Azul */
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  nav.menu-bar .menu-buttons a:hover {
+    background-color: #1f18d4; /* Azul mais escuro ao passar o mouse */
+  }
+  
+  nav.menu-bar .dropdown {
+    display: inline-block;
+  }
+  
+  nav.menu-bar .dropdown .btn-dropdown {
+    background-color: #2a20f6; /* Azul */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  nav.menu-bar .dropdown .btn-dropdown:hover {
+    background-color: #1f18d4; /* Azul mais escuro */
+  }
+  
+  nav.menu-bar .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  nav.menu-bar .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  nav.menu-bar .dropdown .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  nav.menu-bar .dropdown .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  /* Layout principal */
+  main {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Estilos gerais */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-top: 70px; /* Dá espaço para a barra de navegação fixa no topo */
+  }
+  
+  /* Seções */
+  section {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+  }
+  
+  nav.menu-bar .dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: 1px solid #ddd; /* Ajusta a borda */
+    padding: 10px 0; /* Evita contato direto com a margem */
+  }
+  
+  nav.menu-bar .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+  nav.menu-bar .dropdown-content .categoria {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+  }
+  
+  nav.menu-bar .dropdown-content .categoria img {
+    max-width: 20px;
+    margin-right: 10px; /* Espaço entre imagem e texto */
+  }
+  

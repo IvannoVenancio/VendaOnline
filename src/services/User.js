@@ -37,6 +37,7 @@ const validateLogin = async (email, senha) => {
       });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
       if (!user) {
           result.message = "Usuário ou senha inválidos.";
           return result;
@@ -44,6 +45,9 @@ const validateLogin = async (email, senha) => {
 
       // Comparação direta da senha (NÃO SEGURO para produção)
       if (user.senha !== senha) {
+=======
+      if (!user || user.senha !== senha) {
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
       if (!user || user.senha !== senha) {
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
@@ -56,6 +60,7 @@ const validateLogin = async (email, senha) => {
       result.message = "Login bem-sucedido.";
       return result;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   } catch (error) {
       console.error("Erro ao validar login:", error);
@@ -64,6 +69,8 @@ const validateLogin = async (email, senha) => {
   }
 };
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
   } catch (error) {
       result.message = `Erro ao validar login: ${error.message}`;
       return result;
@@ -225,6 +232,9 @@ const viewAllUsers = async () => {
 //     return { success: false, message: 'Erro ao atualizar o perfil.' };
 //   }
 // }
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 
 
@@ -242,6 +252,7 @@ const getUserById = async (id) => {
   }
 };
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // Função para atualizar o usuário
 const updateUser = async (id, data) => {
@@ -296,6 +307,8 @@ const getUserByEmail = async (email) => {
 
 =======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 module.exports = {
   createUser,
   findAllUsers,
@@ -305,7 +318,10 @@ module.exports = {
   deleteUser,
   viewAllUsers,
 <<<<<<< HEAD
+<<<<<<< HEAD
   getUserByEmail
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 };

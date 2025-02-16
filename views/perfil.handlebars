@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html lang="pt">
+=======
+<html lang="en">
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
 <html lang="en">
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
@@ -10,7 +14,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/perfil.css">
+=======
+    <link rel="stylesheet" href="style.css">
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
     <link rel="stylesheet" href="style.css">
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
@@ -20,13 +28,19 @@
 <body>
     <div class="container light-style flex-grow-1 container-p-y">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <h4 class="font-weight-bold py-3 mb-4">Configurações de Conta</h4>
         <form action="/perfil/{{user.id}}/update" method="POST" enctype="multipart/form-data">
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
         <h4 class="font-weight-bold py-3 mb-4">
             Configurações de Conta
         </h4>
         <form action="/perfil/update" method="POST" enctype="multipart/form-data"> <!-- Form para atualização -->
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
             <div class="card overflow-hidden">
                 <div class="row no-gutters row-bordered row-border-light">
@@ -46,6 +60,7 @@
                             <div class="tab-pane fade active show" id="account-general">
                                 <div class="card-body media align-items-center">
 <<<<<<< HEAD
+<<<<<<< HEAD
                                     <img src="{{perfil.foto}}" alt="imagem" class="rounded-circle"
                                         style="width: 100px; height: 100px;"
                                         onerror="this.onerror=null; this.src='/img/avatar-padrao.png';">
@@ -55,12 +70,17 @@
                                             <input type="file" name="imagem" class="account-settings-fileinput">
                                         </label>
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 <img src="{{perfil.foto}}" alt="Avatar">
                                     <div class="media-body ml-4">
                                         <label class="btn btn-outline-primary">
                                             Carregar nova foto
                                             <input type="file" name="foto" class="account-settings-fileinput">
                                         </label> &nbsp;
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
                                         <button type="button" class="btn btn-default md-btn-flat">Repor</button>
                                         <div class="text-light small mt-1">Permitidos: JPG, GIF ou PNG. Máximo 800KB.</div>
@@ -110,7 +130,11 @@
                                     <div class="form-group">
                                         <label class="form-label">Data de Nascimento</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <input type="date" class="form-control" name="data_nascimento"
+=======
+                                        <input type="text" class="form-control" name="data_nascimento"
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
                                         <input type="text" class="form-control" name="data_nascimento"
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
@@ -118,6 +142,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="form-label">País</label>
+<<<<<<< HEAD
 <<<<<<< HEAD
                                        <select class="custom-select" name="pais">
                                         {{#each paises}}
@@ -129,12 +154,17 @@
                                                 </select>
 
 =======
+=======
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
                                         <select class="custom-select" name="pais">
                                             <option {{#ifEquals perfil.pais "Portugal"}}selected{{/ifEquals}}>Portugal</option>
                                             <option {{#ifEquals perfil.pais "Angola"}}selected{{/ifEquals}}>Angola</option>
                                             <option {{#ifEquals perfil.pais "Brazil"}}selected{{/ifEquals}}>Brazil</option>
                                             <option {{#ifEquals perfil.pais "Congo"}}selected{{/ifEquals}}>Congo</option>
                                         </select>
+<<<<<<< HEAD
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
+=======
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
                                     </div>
                                 </div>
@@ -144,8 +174,12 @@
                                     <div class="form-group">
                                         <label class="form-label">Telefone</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <input type="text" class="form-control" name="telefone"
                                             value="{{perfil.telefone}}">
+=======
+                                        <input type="text" class="form-control" name="telefone" value="{{perfil.telefone}}">
+>>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
 =======
                                         <input type="text" class="form-control" name="telefone" value="{{perfil.telefone}}">
 >>>>>>> f5a12c7229336d6eb36c3fc41bb25ac6d67b49b7
